@@ -1,0 +1,731 @@
+{
+  "extensionUris": [{
+    "extensionUriAnchor": 2,
+    "uri": "/functions_aggregate_generic.yaml"
+  }, {
+    "extensionUriAnchor": 4,
+    "uri": "/functions_arithmetic.yaml"
+  }, {
+    "extensionUriAnchor": 3,
+    "uri": "/functions_arithmetic_decimal.yaml"
+  }, {
+    "extensionUriAnchor": 1,
+    "uri": "/functions_comparison.yaml"
+  }],
+  "extensions": [{
+    "extensionFunction": {
+      "extensionUriReference": 1,
+      "functionAnchor": 1,
+      "name": "gt:any_any",
+      "extensionUrnReference": 1
+    }
+  }, {
+    "extensionFunction": {
+      "extensionUriReference": 1,
+      "functionAnchor": 2,
+      "name": "equal:any_any",
+      "extensionUrnReference": 1
+    }
+  }, {
+    "extensionFunction": {
+      "extensionUriReference": 2,
+      "functionAnchor": 3,
+      "name": "count:any",
+      "extensionUrnReference": 2
+    }
+  }, {
+    "extensionFunction": {
+      "extensionUriReference": 3,
+      "functionAnchor": 4,
+      "name": "sum:dec",
+      "extensionUrnReference": 3
+    }
+  }, {
+    "extensionFunction": {
+      "extensionUriReference": 3,
+      "functionAnchor": 5,
+      "name": "avg:dec",
+      "extensionUrnReference": 3
+    }
+  }, {
+    "extensionFunction": {
+      "extensionUriReference": 4,
+      "functionAnchor": 6,
+      "name": "max:i32",
+      "extensionUrnReference": 4
+    }
+  }],
+  "relations": [{
+    "root": {
+      "input": {
+        "fetch": {
+          "common": {
+            "direct": {
+            },
+            "hint": {
+              "alias": "avgSize,rowCount",
+              "outputNames": ["32.0", "100.0"]
+            }
+          },
+          "input": {
+            "sort": {
+              "common": {
+                "direct": {
+                },
+                "hint": {
+                  "alias": "avgSize,rowCount",
+                  "outputNames": ["32.0", "100.0"]
+                }
+              },
+              "input": {
+                "aggregate": {
+                  "common": {
+                    "direct": {
+                    },
+                    "hint": {
+                      "alias": "avgSize,rowCount",
+                      "outputNames": ["32.0", "47395.17958552106"]
+                    }
+                  },
+                  "input": {
+                    "join": {
+                      "common": {
+                        "direct": {
+                        },
+                        "hint": {
+                          "alias": "avgSize,rowCount",
+                          "outputNames": ["458.66567650848657", "51349.386270120776"]
+                        }
+                      },
+                      "left": {
+                        "filter": {
+                          "common": {
+                            "direct": {
+                            },
+                            "hint": {
+                              "alias": "avgSize,rowCount",
+                              "outputNames": ["258.29617147140414", "50906.22947067022"]
+                            }
+                          },
+                          "input": {
+                            "read": {
+                              "common": {
+                                "direct": {
+                                },
+                                "hint": {
+                                  "alias": "avgSize,rowCount,I_ITEM_SK:numNulls,I_ITEM_SK:numDVs,I_ITEM_SK:colType,I_ITEM_SK:avgColLen,I_ITEM_SK:maxColLen,I_ITEM_ID:numNulls,I_ITEM_ID:numDVs,I_ITEM_ID:colType,I_ITEM_ID:avgColLen,I_ITEM_ID:maxColLen,I_REC_START_DATE:numNulls,I_REC_START_DATE:numDVs,I_REC_START_DATE:colType,I_REC_START_DATE:avgColLen,I_REC_START_DATE:maxColLen,I_REC_END_DATE:numNulls,I_REC_END_DATE:numDVs,I_REC_END_DATE:colType,I_REC_END_DATE:avgColLen,I_REC_END_DATE:maxColLen,I_ITEM_DESC:numNulls,I_ITEM_DESC:numDVs,I_ITEM_DESC:colType,I_ITEM_DESC:avgColLen,I_ITEM_DESC:maxColLen,I_CURRENT_PRICE:numNulls,I_CURRENT_PRICE:numDVs,I_CURRENT_PRICE:colType,I_CURRENT_PRICE:avgColLen,I_CURRENT_PRICE:maxColLen,I_WHOLESALE_COST:numNulls,I_WHOLESALE_COST:numDVs,I_WHOLESALE_COST:colType,I_WHOLESALE_COST:avgColLen,I_WHOLESALE_COST:maxColLen,I_BRAND_ID:numNulls,I_BRAND_ID:numDVs,I_BRAND_ID:colType,I_BRAND_ID:avgColLen,I_BRAND_ID:maxColLen,I_BRAND:numNulls,I_BRAND:numDVs,I_BRAND:colType,I_BRAND:avgColLen,I_BRAND:maxColLen,I_CLASS_ID:numNulls,I_CLASS_ID:numDVs,I_CLASS_ID:colType,I_CLASS_ID:avgColLen,I_CLASS_ID:maxColLen,I_CLASS:numNulls,I_CLASS:numDVs,I_CLASS:colType,I_CLASS:avgColLen,I_CLASS:maxColLen,I_CATEGORY_ID:numNulls,I_CATEGORY_ID:numDVs,I_CATEGORY_ID:colType,I_CATEGORY_ID:avgColLen,I_CATEGORY_ID:maxColLen,I_CATEGORY:numNulls,I_CATEGORY:numDVs,I_CATEGORY:colType,I_CATEGORY:avgColLen,I_CATEGORY:maxColLen,I_MANUFACT_ID:numNulls,I_MANUFACT_ID:numDVs,I_MANUFACT_ID:colType,I_MANUFACT_ID:avgColLen,I_MANUFACT_ID:maxColLen,I_MANUFACT:numNulls,I_MANUFACT:numDVs,I_MANUFACT:colType,I_MANUFACT:avgColLen,I_MANUFACT:maxColLen,I_SIZE:numNulls,I_SIZE:numDVs,I_SIZE:colType,I_SIZE:avgColLen,I_SIZE:maxColLen,I_FORMULATION:numNulls,I_FORMULATION:numDVs,I_FORMULATION:colType,I_FORMULATION:avgColLen,I_FORMULATION:maxColLen,I_COLOR:numNulls,I_COLOR:numDVs,I_COLOR:colType,I_COLOR:avgColLen,I_COLOR:maxColLen,I_UNITS:numNulls,I_UNITS:numDVs,I_UNITS:colType,I_UNITS:avgColLen,I_UNITS:maxColLen,I_CONTAINER:numNulls,I_CONTAINER:numDVs,I_CONTAINER:colType,I_CONTAINER:avgColLen,I_CONTAINER:maxColLen,I_MANAGER_ID:numNulls,I_MANAGER_ID:numDVs,I_MANAGER_ID:colType,I_MANAGER_ID:avgColLen,I_MANAGER_ID:maxColLen,I_PRODUCT_NAME:numNulls,I_PRODUCT_NAME:numDVs,I_PRODUCT_NAME:colType,I_PRODUCT_NAME:avgColLen,I_PRODUCT_NAME:maxColLen",
+                                  "outputNames": ["258.29617147140414", "102000.0", "0", "102000", "INTEGER", "4.0", "4", "0", "51088", "VARCHAR", "16.0", "16", "243", "5", "DATE", "4.0", "4", "51000", "4", "DATE", "4.0", "4", "255", "72796", "VARCHAR", "100.48740478647599", "200", "269", "7121", "DECIMAL(7, 2)", "4.0", "4", "249", "5024", "DECIMAL(7, 2)", "4.0", "4", "249", "954", "INTEGER", "4.0", "4", "235", "724", "VARCHAR", "16.16465385938191", "22", "242", "17", "INTEGER", "4.0", "4", "241", "100", "VARCHAR", "7.789227488477677", "15", "243", "11", "INTEGER", "4.0", "4", "232", "11", "VARCHAR", "5.899506721169719", "11", "247", "1009", "INTEGER", "4.0", "4", "268", "1024", "VARCHAR", "11.303100302756262", "15", "250", "8", "VARCHAR", "4.338702702702703", "11", "252", "76626", "VARCHAR", "20.0", "20", "255", "93", "VARCHAR", "5.3769030419185215", "10", "251", "22", "VARCHAR", "4.185259805993179", "7", "240", "2", "VARCHAR", "7.0", "7", "236", "101", "INTEGER", "4.0", "4", "249", "100866", "VARCHAR", "19.751412762528133", "28"]
+                                }
+                              },
+                              "baseSchema": {
+                                "names": ["I_ITEM_SK", "I_ITEM_ID", "I_REC_START_DATE", "I_REC_END_DATE", "I_ITEM_DESC", "I_CURRENT_PRICE", "I_WHOLESALE_COST", "I_BRAND_ID", "I_BRAND", "I_CLASS_ID", "I_CLASS", "I_CATEGORY_ID", "I_CATEGORY", "I_MANUFACT_ID", "I_MANUFACT", "I_SIZE", "I_FORMULATION", "I_COLOR", "I_UNITS", "I_CONTAINER", "I_MANAGER_ID", "I_PRODUCT_NAME"],
+                                "struct": {
+                                  "types": [{
+                                    "i32": {
+                                      "nullability": "NULLABILITY_NULLABLE"
+                                    }
+                                  }, {
+                                    "string": {
+                                      "nullability": "NULLABILITY_NULLABLE"
+                                    }
+                                  }, {
+                                    "date": {
+                                      "nullability": "NULLABILITY_NULLABLE"
+                                    }
+                                  }, {
+                                    "date": {
+                                      "nullability": "NULLABILITY_NULLABLE"
+                                    }
+                                  }, {
+                                    "string": {
+                                      "nullability": "NULLABILITY_NULLABLE"
+                                    }
+                                  }, {
+                                    "decimal": {
+                                      "scale": 2,
+                                      "precision": 7,
+                                      "nullability": "NULLABILITY_NULLABLE"
+                                    }
+                                  }, {
+                                    "decimal": {
+                                      "scale": 2,
+                                      "precision": 7,
+                                      "nullability": "NULLABILITY_NULLABLE"
+                                    }
+                                  }, {
+                                    "i32": {
+                                      "nullability": "NULLABILITY_NULLABLE"
+                                    }
+                                  }, {
+                                    "string": {
+                                      "nullability": "NULLABILITY_NULLABLE"
+                                    }
+                                  }, {
+                                    "i32": {
+                                      "nullability": "NULLABILITY_NULLABLE"
+                                    }
+                                  }, {
+                                    "string": {
+                                      "nullability": "NULLABILITY_NULLABLE"
+                                    }
+                                  }, {
+                                    "i32": {
+                                      "nullability": "NULLABILITY_NULLABLE"
+                                    }
+                                  }, {
+                                    "string": {
+                                      "nullability": "NULLABILITY_NULLABLE"
+                                    }
+                                  }, {
+                                    "i32": {
+                                      "nullability": "NULLABILITY_NULLABLE"
+                                    }
+                                  }, {
+                                    "string": {
+                                      "nullability": "NULLABILITY_NULLABLE"
+                                    }
+                                  }, {
+                                    "string": {
+                                      "nullability": "NULLABILITY_NULLABLE"
+                                    }
+                                  }, {
+                                    "string": {
+                                      "nullability": "NULLABILITY_NULLABLE"
+                                    }
+                                  }, {
+                                    "string": {
+                                      "nullability": "NULLABILITY_NULLABLE"
+                                    }
+                                  }, {
+                                    "string": {
+                                      "nullability": "NULLABILITY_NULLABLE"
+                                    }
+                                  }, {
+                                    "string": {
+                                      "nullability": "NULLABILITY_NULLABLE"
+                                    }
+                                  }, {
+                                    "i32": {
+                                      "nullability": "NULLABILITY_NULLABLE"
+                                    }
+                                  }, {
+                                    "string": {
+                                      "nullability": "NULLABILITY_NULLABLE"
+                                    }
+                                  }],
+                                  "nullability": "NULLABILITY_REQUIRED"
+                                }
+                              },
+                              "namedTable": {
+                                "names": ["ITEM"]
+                              }
+                            }
+                          },
+                          "condition": {
+                            "scalarFunction": {
+                              "functionReference": 1,
+                              "outputType": {
+                                "bool": {
+                                  "nullability": "NULLABILITY_NULLABLE"
+                                }
+                              },
+                              "arguments": [{
+                                "value": {
+                                  "selection": {
+                                    "directReference": {
+                                      "structField": {
+                                        "field": 5
+                                      }
+                                    },
+                                    "rootReference": {
+                                    }
+                                  }
+                                }
+                              }, {
+                                "value": {
+                                  "literal": {
+                                    "decimal": {
+                                      "value": "iBMAAAAAAAAAAAAAAAAAAA==",
+                                      "precision": 7,
+                                      "scale": 2
+                                    }
+                                  }
+                                }
+                              }]
+                            }
+                          }
+                        }
+                      },
+                      "right": {
+                        "join": {
+                          "common": {
+                            "direct": {
+                            },
+                            "hint": {
+                              "alias": "avgSize,rowCount",
+                              "outputNames": ["200.36950503708243", "500000.0"]
+                            }
+                          },
+                          "left": {
+                            "read": {
+                              "common": {
+                                "direct": {
+                                },
+                                "hint": {
+                                  "alias": "avgSize,rowCount,C_CUSTOMER_SK:numNulls,C_CUSTOMER_SK:numDVs,C_CUSTOMER_SK:colType,C_CUSTOMER_SK:avgColLen,C_CUSTOMER_SK:maxColLen,C_CUSTOMER_ID:numNulls,C_CUSTOMER_ID:numDVs,C_CUSTOMER_ID:colType,C_CUSTOMER_ID:avgColLen,C_CUSTOMER_ID:maxColLen,C_CURRENT_CDEMO_SK:numNulls,C_CURRENT_CDEMO_SK:numDVs,C_CURRENT_CDEMO_SK:colType,C_CURRENT_CDEMO_SK:avgColLen,C_CURRENT_CDEMO_SK:maxColLen,C_CURRENT_HDEMO_SK:numNulls,C_CURRENT_HDEMO_SK:numDVs,C_CURRENT_HDEMO_SK:colType,C_CURRENT_HDEMO_SK:avgColLen,C_CURRENT_HDEMO_SK:maxColLen,C_CURRENT_ADDR_SK:numNulls,C_CURRENT_ADDR_SK:numDVs,C_CURRENT_ADDR_SK:colType,C_CURRENT_ADDR_SK:avgColLen,C_CURRENT_ADDR_SK:maxColLen,C_FIRST_SHIPTO_DATE_SK:numNulls,C_FIRST_SHIPTO_DATE_SK:numDVs,C_FIRST_SHIPTO_DATE_SK:colType,C_FIRST_SHIPTO_DATE_SK:avgColLen,C_FIRST_SHIPTO_DATE_SK:maxColLen,C_FIRST_SALES_DATE_SK:numNulls,C_FIRST_SALES_DATE_SK:numDVs,C_FIRST_SALES_DATE_SK:colType,C_FIRST_SALES_DATE_SK:avgColLen,C_FIRST_SALES_DATE_SK:maxColLen,C_SALUTATION:numNulls,C_SALUTATION:numDVs,C_SALUTATION:colType,C_SALUTATION:avgColLen,C_SALUTATION:maxColLen,C_FIRST_NAME:numNulls,C_FIRST_NAME:numDVs,C_FIRST_NAME:colType,C_FIRST_NAME:avgColLen,C_FIRST_NAME:maxColLen,C_LAST_NAME:numNulls,C_LAST_NAME:numDVs,C_LAST_NAME:colType,C_LAST_NAME:avgColLen,C_LAST_NAME:maxColLen,C_PREFERRED_CUST_FLAG:numNulls,C_PREFERRED_CUST_FLAG:numDVs,C_PREFERRED_CUST_FLAG:colType,C_PREFERRED_CUST_FLAG:avgColLen,C_PREFERRED_CUST_FLAG:maxColLen,C_BIRTH_DAY:numNulls,C_BIRTH_DAY:numDVs,C_BIRTH_DAY:colType,C_BIRTH_DAY:avgColLen,C_BIRTH_DAY:maxColLen,C_BIRTH_MONTH:numNulls,C_BIRTH_MONTH:numDVs,C_BIRTH_MONTH:colType,C_BIRTH_MONTH:avgColLen,C_BIRTH_MONTH:maxColLen,C_BIRTH_YEAR:numNulls,C_BIRTH_YEAR:numDVs,C_BIRTH_YEAR:colType,C_BIRTH_YEAR:avgColLen,C_BIRTH_YEAR:maxColLen,C_BIRTH_COUNTRY:numNulls,C_BIRTH_COUNTRY:numDVs,C_BIRTH_COUNTRY:colType,C_BIRTH_COUNTRY:avgColLen,C_BIRTH_COUNTRY:maxColLen,C_LOGIN:numNulls,C_LOGIN:numDVs,C_LOGIN:colType,C_LOGIN:avgColLen,C_LOGIN:maxColLen,C_EMAIL_ADDRESS:numNulls,C_EMAIL_ADDRESS:numDVs,C_EMAIL_ADDRESS:colType,C_EMAIL_ADDRESS:avgColLen,C_EMAIL_ADDRESS:maxColLen,C_LAST_REVIEW_DATE_SK:numNulls,C_LAST_REVIEW_DATE_SK:numDVs,C_LAST_REVIEW_DATE_SK:colType,C_LAST_REVIEW_DATE_SK:avgColLen,C_LAST_REVIEW_DATE_SK:maxColLen",
+                                  "outputNames": ["108.36950503708243", "500000.0", "0", "492955", "INTEGER", "4.0", "4", "0", "500000", "VARCHAR", "16.0", "16", "17303", "438266", "INTEGER", "4.0", "4", "17429", "7083", "INTEGER", "4.0", "4", "0", "212100", "INTEGER", "4.0", "4", "17610", "3598", "INTEGER", "4.0", "4", "17544", "3601", "INTEGER", "4.0", "4", "17372", "7", "VARCHAR", "3.242839205350705", "4", "17470", "5079", "VARCHAR", "5.840557063809504", "11", "17517", "5020", "VARCHAR", "6.127515373598655", "13", "17299", "3", "VARCHAR", "1.0", "1", "17773", "32", "INTEGER", "4.0", "4", "17386", "13", "INTEGER", "4.0", "4", "17464", "70", "INTEGER", "4.0", "4", "17506", "212", "VARCHAR", "8.695328853830306", "20", "17531", "2", "VARCHAR", "0.0", "0", "17537", "478082", "VARCHAR", "27.46326454049326", "47", "17665", "369", "INTEGER", "4.0", "4"]
+                                }
+                              },
+                              "baseSchema": {
+                                "names": ["C_CUSTOMER_SK", "C_CUSTOMER_ID", "C_CURRENT_CDEMO_SK", "C_CURRENT_HDEMO_SK", "C_CURRENT_ADDR_SK", "C_FIRST_SHIPTO_DATE_SK", "C_FIRST_SALES_DATE_SK", "C_SALUTATION", "C_FIRST_NAME", "C_LAST_NAME", "C_PREFERRED_CUST_FLAG", "C_BIRTH_DAY", "C_BIRTH_MONTH", "C_BIRTH_YEAR", "C_BIRTH_COUNTRY", "C_LOGIN", "C_EMAIL_ADDRESS", "C_LAST_REVIEW_DATE_SK"],
+                                "struct": {
+                                  "types": [{
+                                    "i32": {
+                                      "nullability": "NULLABILITY_NULLABLE"
+                                    }
+                                  }, {
+                                    "string": {
+                                      "nullability": "NULLABILITY_NULLABLE"
+                                    }
+                                  }, {
+                                    "i32": {
+                                      "nullability": "NULLABILITY_NULLABLE"
+                                    }
+                                  }, {
+                                    "i32": {
+                                      "nullability": "NULLABILITY_NULLABLE"
+                                    }
+                                  }, {
+                                    "i32": {
+                                      "nullability": "NULLABILITY_NULLABLE"
+                                    }
+                                  }, {
+                                    "i32": {
+                                      "nullability": "NULLABILITY_NULLABLE"
+                                    }
+                                  }, {
+                                    "i32": {
+                                      "nullability": "NULLABILITY_NULLABLE"
+                                    }
+                                  }, {
+                                    "string": {
+                                      "nullability": "NULLABILITY_NULLABLE"
+                                    }
+                                  }, {
+                                    "string": {
+                                      "nullability": "NULLABILITY_NULLABLE"
+                                    }
+                                  }, {
+                                    "string": {
+                                      "nullability": "NULLABILITY_NULLABLE"
+                                    }
+                                  }, {
+                                    "string": {
+                                      "nullability": "NULLABILITY_NULLABLE"
+                                    }
+                                  }, {
+                                    "i32": {
+                                      "nullability": "NULLABILITY_NULLABLE"
+                                    }
+                                  }, {
+                                    "i32": {
+                                      "nullability": "NULLABILITY_NULLABLE"
+                                    }
+                                  }, {
+                                    "i32": {
+                                      "nullability": "NULLABILITY_NULLABLE"
+                                    }
+                                  }, {
+                                    "string": {
+                                      "nullability": "NULLABILITY_NULLABLE"
+                                    }
+                                  }, {
+                                    "string": {
+                                      "nullability": "NULLABILITY_NULLABLE"
+                                    }
+                                  }, {
+                                    "string": {
+                                      "nullability": "NULLABILITY_NULLABLE"
+                                    }
+                                  }, {
+                                    "i32": {
+                                      "nullability": "NULLABILITY_NULLABLE"
+                                    }
+                                  }],
+                                  "nullability": "NULLABILITY_REQUIRED"
+                                }
+                              },
+                              "namedTable": {
+                                "names": ["CUSTOMER"]
+                              }
+                            }
+                          },
+                          "right": {
+                            "read": {
+                              "common": {
+                                "direct": {
+                                },
+                                "hint": {
+                                  "alias": "avgSize,rowCount,SS_SOLD_DATE_SK:numNulls,SS_SOLD_DATE_SK:numDVs,SS_SOLD_DATE_SK:colType,SS_SOLD_DATE_SK:avgColLen,SS_SOLD_DATE_SK:maxColLen,SS_SOLD_TIME_SK:numNulls,SS_SOLD_TIME_SK:numDVs,SS_SOLD_TIME_SK:colType,SS_SOLD_TIME_SK:avgColLen,SS_SOLD_TIME_SK:maxColLen,SS_ITEM_SK:numNulls,SS_ITEM_SK:numDVs,SS_ITEM_SK:colType,SS_ITEM_SK:avgColLen,SS_ITEM_SK:maxColLen,SS_CUSTOMER_SK:numNulls,SS_CUSTOMER_SK:numDVs,SS_CUSTOMER_SK:colType,SS_CUSTOMER_SK:avgColLen,SS_CUSTOMER_SK:maxColLen,SS_CDEMO_SK:numNulls,SS_CDEMO_SK:numDVs,SS_CDEMO_SK:colType,SS_CDEMO_SK:avgColLen,SS_CDEMO_SK:maxColLen,SS_HDEMO_SK:numNulls,SS_HDEMO_SK:numDVs,SS_HDEMO_SK:colType,SS_HDEMO_SK:avgColLen,SS_HDEMO_SK:maxColLen,SS_ADDR_SK:numNulls,SS_ADDR_SK:numDVs,SS_ADDR_SK:colType,SS_ADDR_SK:avgColLen,SS_ADDR_SK:maxColLen,SS_STORE_SK:numNulls,SS_STORE_SK:numDVs,SS_STORE_SK:colType,SS_STORE_SK:avgColLen,SS_STORE_SK:maxColLen,SS_PROMO_SK:numNulls,SS_PROMO_SK:numDVs,SS_PROMO_SK:colType,SS_PROMO_SK:avgColLen,SS_PROMO_SK:maxColLen,SS_TICKET_NUMBER:numNulls,SS_TICKET_NUMBER:numDVs,SS_TICKET_NUMBER:colType,SS_TICKET_NUMBER:avgColLen,SS_TICKET_NUMBER:maxColLen,SS_QUANTITY:numNulls,SS_QUANTITY:numDVs,SS_QUANTITY:colType,SS_QUANTITY:avgColLen,SS_QUANTITY:maxColLen,SS_WHOLESALE_COST:numNulls,SS_WHOLESALE_COST:numDVs,SS_WHOLESALE_COST:colType,SS_WHOLESALE_COST:avgColLen,SS_WHOLESALE_COST:maxColLen,SS_LIST_PRICE:numNulls,SS_LIST_PRICE:numDVs,SS_LIST_PRICE:colType,SS_LIST_PRICE:avgColLen,SS_LIST_PRICE:maxColLen,SS_SALES_PRICE:numNulls,SS_SALES_PRICE:numDVs,SS_SALES_PRICE:colType,SS_SALES_PRICE:avgColLen,SS_SALES_PRICE:maxColLen,SS_EXT_DISCOUNT_AMT:numNulls,SS_EXT_DISCOUNT_AMT:numDVs,SS_EXT_DISCOUNT_AMT:colType,SS_EXT_DISCOUNT_AMT:avgColLen,SS_EXT_DISCOUNT_AMT:maxColLen,SS_EXT_SALES_PRICE:numNulls,SS_EXT_SALES_PRICE:numDVs,SS_EXT_SALES_PRICE:colType,SS_EXT_SALES_PRICE:avgColLen,SS_EXT_SALES_PRICE:maxColLen,SS_EXT_WHOLESALE_COST:numNulls,SS_EXT_WHOLESALE_COST:numDVs,SS_EXT_WHOLESALE_COST:colType,SS_EXT_WHOLESALE_COST:avgColLen,SS_EXT_WHOLESALE_COST:maxColLen,SS_EXT_LIST_PRICE:numNulls,SS_EXT_LIST_PRICE:numDVs,SS_EXT_LIST_PRICE:colType,SS_EXT_LIST_PRICE:avgColLen,SS_EXT_LIST_PRICE:maxColLen,SS_EXT_TAX:numNulls,SS_EXT_TAX:numDVs,SS_EXT_TAX:colType,SS_EXT_TAX:avgColLen,SS_EXT_TAX:maxColLen,SS_COUPON_AMT:numNulls,SS_COUPON_AMT:numDVs,SS_COUPON_AMT:colType,SS_COUPON_AMT:avgColLen,SS_COUPON_AMT:maxColLen,SS_NET_PAID:numNulls,SS_NET_PAID:numDVs,SS_NET_PAID:colType,SS_NET_PAID:avgColLen,SS_NET_PAID:maxColLen,SS_NET_PAID_INC_TAX:numNulls,SS_NET_PAID_INC_TAX:numDVs,SS_NET_PAID_INC_TAX:colType,SS_NET_PAID_INC_TAX:avgColLen,SS_NET_PAID_INC_TAX:maxColLen,SS_NET_PROFIT:numNulls,SS_NET_PROFIT:numDVs,SS_NET_PROFIT:colType,SS_NET_PROFIT:avgColLen,SS_NET_PROFIT:maxColLen",
+                                  "outputNames": ["92.0", "2.8800991E7", "1296458", "1821", "INTEGER", "4.0", "4", "1296774", "47962", "INTEGER", "4.0", "4", "0", "105425", "INTEGER", "4.0", "4", "1296967", "491392", "INTEGER", "4.0", "4", "1295974", "1375660", "INTEGER", "4.0", "4", "1296785", "7083", "INTEGER", "4.0", "4", "1296592", "245984", "INTEGER", "4.0", "4", "1295530", "52", "INTEGER", "4.0", "4", "1296235", "499", "INTEGER", "4.0", "4", "0", "2365348", "INTEGER", "4.0", "4", "1296182", "101", "INTEGER", "4.0", "4", "1298069", "10092", "DECIMAL(7, 2)", "4.0", "4", "1297719", "19496", "DECIMAL(7, 2)", "4.0", "4", "1297324", "19296", "DECIMAL(7, 2)", "4.0", "4", "1297549", "537778", "DECIMAL(7, 2)", "4.0", "4", "1296667", "607286", "DECIMAL(7, 2)", "4.0", "4", "1297046", "388753", "DECIMAL(7, 2)", "4.0", "4", "1297043", "737143", "DECIMAL(7, 2)", "4.0", "4", "1298163", "115486", "DECIMAL(7, 2)", "4.0", "4", "1296344", "537685", "DECIMAL(7, 2)", "4.0", "4", "1297387", "809614", "DECIMAL(7, 2)", "4.0", "4", "1298372", "1134401", "DECIMAL(7, 2)", "4.0", "4", "1298594", "1036737", "DECIMAL(7, 2)", "4.0", "4"]
+                                }
+                              },
+                              "baseSchema": {
+                                "names": ["SS_SOLD_DATE_SK", "SS_SOLD_TIME_SK", "SS_ITEM_SK", "SS_CUSTOMER_SK", "SS_CDEMO_SK", "SS_HDEMO_SK", "SS_ADDR_SK", "SS_STORE_SK", "SS_PROMO_SK", "SS_TICKET_NUMBER", "SS_QUANTITY", "SS_WHOLESALE_COST", "SS_LIST_PRICE", "SS_SALES_PRICE", "SS_EXT_DISCOUNT_AMT", "SS_EXT_SALES_PRICE", "SS_EXT_WHOLESALE_COST", "SS_EXT_LIST_PRICE", "SS_EXT_TAX", "SS_COUPON_AMT", "SS_NET_PAID", "SS_NET_PAID_INC_TAX", "SS_NET_PROFIT"],
+                                "struct": {
+                                  "types": [{
+                                    "i32": {
+                                      "nullability": "NULLABILITY_NULLABLE"
+                                    }
+                                  }, {
+                                    "i32": {
+                                      "nullability": "NULLABILITY_NULLABLE"
+                                    }
+                                  }, {
+                                    "i32": {
+                                      "nullability": "NULLABILITY_NULLABLE"
+                                    }
+                                  }, {
+                                    "i32": {
+                                      "nullability": "NULLABILITY_NULLABLE"
+                                    }
+                                  }, {
+                                    "i32": {
+                                      "nullability": "NULLABILITY_NULLABLE"
+                                    }
+                                  }, {
+                                    "i32": {
+                                      "nullability": "NULLABILITY_NULLABLE"
+                                    }
+                                  }, {
+                                    "i32": {
+                                      "nullability": "NULLABILITY_NULLABLE"
+                                    }
+                                  }, {
+                                    "i32": {
+                                      "nullability": "NULLABILITY_NULLABLE"
+                                    }
+                                  }, {
+                                    "i32": {
+                                      "nullability": "NULLABILITY_NULLABLE"
+                                    }
+                                  }, {
+                                    "i32": {
+                                      "nullability": "NULLABILITY_NULLABLE"
+                                    }
+                                  }, {
+                                    "i32": {
+                                      "nullability": "NULLABILITY_NULLABLE"
+                                    }
+                                  }, {
+                                    "decimal": {
+                                      "scale": 2,
+                                      "precision": 7,
+                                      "nullability": "NULLABILITY_NULLABLE"
+                                    }
+                                  }, {
+                                    "decimal": {
+                                      "scale": 2,
+                                      "precision": 7,
+                                      "nullability": "NULLABILITY_NULLABLE"
+                                    }
+                                  }, {
+                                    "decimal": {
+                                      "scale": 2,
+                                      "precision": 7,
+                                      "nullability": "NULLABILITY_NULLABLE"
+                                    }
+                                  }, {
+                                    "decimal": {
+                                      "scale": 2,
+                                      "precision": 7,
+                                      "nullability": "NULLABILITY_NULLABLE"
+                                    }
+                                  }, {
+                                    "decimal": {
+                                      "scale": 2,
+                                      "precision": 7,
+                                      "nullability": "NULLABILITY_NULLABLE"
+                                    }
+                                  }, {
+                                    "decimal": {
+                                      "scale": 2,
+                                      "precision": 7,
+                                      "nullability": "NULLABILITY_NULLABLE"
+                                    }
+                                  }, {
+                                    "decimal": {
+                                      "scale": 2,
+                                      "precision": 7,
+                                      "nullability": "NULLABILITY_NULLABLE"
+                                    }
+                                  }, {
+                                    "decimal": {
+                                      "scale": 2,
+                                      "precision": 7,
+                                      "nullability": "NULLABILITY_NULLABLE"
+                                    }
+                                  }, {
+                                    "decimal": {
+                                      "scale": 2,
+                                      "precision": 7,
+                                      "nullability": "NULLABILITY_NULLABLE"
+                                    }
+                                  }, {
+                                    "decimal": {
+                                      "scale": 2,
+                                      "precision": 7,
+                                      "nullability": "NULLABILITY_NULLABLE"
+                                    }
+                                  }, {
+                                    "decimal": {
+                                      "scale": 2,
+                                      "precision": 7,
+                                      "nullability": "NULLABILITY_NULLABLE"
+                                    }
+                                  }, {
+                                    "decimal": {
+                                      "scale": 2,
+                                      "precision": 7,
+                                      "nullability": "NULLABILITY_NULLABLE"
+                                    }
+                                  }],
+                                  "nullability": "NULLABILITY_REQUIRED"
+                                }
+                              },
+                              "namedTable": {
+                                "names": ["STORE_SALES"]
+                              }
+                            }
+                          },
+                          "expression": {
+                            "scalarFunction": {
+                              "functionReference": 2,
+                              "outputType": {
+                                "bool": {
+                                  "nullability": "NULLABILITY_NULLABLE"
+                                }
+                              },
+                              "arguments": [{
+                                "value": {
+                                  "selection": {
+                                    "directReference": {
+                                      "structField": {
+                                      }
+                                    },
+                                    "rootReference": {
+                                    }
+                                  }
+                                }
+                              }, {
+                                "value": {
+                                  "selection": {
+                                    "directReference": {
+                                      "structField": {
+                                        "field": 21
+                                      }
+                                    },
+                                    "rootReference": {
+                                    }
+                                  }
+                                }
+                              }]
+                            }
+                          },
+                          "type": "JOIN_TYPE_INNER"
+                        }
+                      },
+                      "expression": {
+                        "scalarFunction": {
+                          "functionReference": 2,
+                          "outputType": {
+                            "bool": {
+                              "nullability": "NULLABILITY_NULLABLE"
+                            }
+                          },
+                          "arguments": [{
+                            "value": {
+                              "selection": {
+                                "directReference": {
+                                  "structField": {
+                                    "field": 42
+                                  }
+                                },
+                                "rootReference": {
+                                }
+                              }
+                            }
+                          }, {
+                            "value": {
+                              "selection": {
+                                "directReference": {
+                                  "structField": {
+                                  }
+                                },
+                                "rootReference": {
+                                }
+                              }
+                            }
+                          }]
+                        }
+                      },
+                      "type": "JOIN_TYPE_INNER"
+                    }
+                  },
+                  "groupings": [{
+                    "groupingExpressions": [{
+                      "selection": {
+                        "directReference": {
+                          "structField": {
+                            "field": 23
+                          }
+                        },
+                        "rootReference": {
+                        }
+                      }
+                    }]
+                  }],
+                  "measures": [{
+                    "measure": {
+                      "functionReference": 3,
+                      "phase": "AGGREGATION_PHASE_INITIAL_TO_RESULT",
+                      "outputType": {
+                        "i64": {
+                          "nullability": "NULLABILITY_REQUIRED"
+                        }
+                      },
+                      "invocation": "AGGREGATION_INVOCATION_ALL",
+                      "arguments": [{
+                        "value": {
+                          "selection": {
+                            "directReference": {
+                              "structField": {
+                                "field": 49
+                              }
+                            },
+                            "rootReference": {
+                            }
+                          }
+                        }
+                      }]
+                    }
+                  }, {
+                    "measure": {
+                      "functionReference": 4,
+                      "phase": "AGGREGATION_PHASE_INITIAL_TO_RESULT",
+                      "outputType": {
+                        "decimal": {
+                          "scale": 2,
+                          "precision": 7,
+                          "nullability": "NULLABILITY_NULLABLE"
+                        }
+                      },
+                      "invocation": "AGGREGATION_INVOCATION_ALL",
+                      "arguments": [{
+                        "value": {
+                          "selection": {
+                            "directReference": {
+                              "structField": {
+                                "field": 61
+                              }
+                            },
+                            "rootReference": {
+                            }
+                          }
+                        }
+                      }]
+                    }
+                  }, {
+                    "measure": {
+                      "functionReference": 5,
+                      "phase": "AGGREGATION_PHASE_INITIAL_TO_RESULT",
+                      "outputType": {
+                        "decimal": {
+                          "scale": 2,
+                          "precision": 7,
+                          "nullability": "NULLABILITY_NULLABLE"
+                        }
+                      },
+                      "invocation": "AGGREGATION_INVOCATION_ALL",
+                      "arguments": [{
+                        "value": {
+                          "selection": {
+                            "directReference": {
+                              "structField": {
+                                "field": 62
+                              }
+                            },
+                            "rootReference": {
+                            }
+                          }
+                        }
+                      }]
+                    }
+                  }, {
+                    "measure": {
+                      "functionReference": 6,
+                      "phase": "AGGREGATION_PHASE_INITIAL_TO_RESULT",
+                      "outputType": {
+                        "i32": {
+                          "nullability": "NULLABILITY_NULLABLE"
+                        }
+                      },
+                      "invocation": "AGGREGATION_INVOCATION_ALL",
+                      "arguments": [{
+                        "value": {
+                          "selection": {
+                            "directReference": {
+                              "structField": {
+                                "field": 40
+                              }
+                            },
+                            "rootReference": {
+                            }
+                          }
+                        }
+                      }]
+                    }
+                  }]
+                }
+              },
+              "sorts": [{
+                "expr": {
+                  "selection": {
+                    "directReference": {
+                      "structField": {
+                        "field": 2
+                      }
+                    },
+                    "rootReference": {
+                    }
+                  }
+                },
+                "direction": "SORT_DIRECTION_DESC_NULLS_FIRST"
+              }]
+            }
+          },
+          "offset": "0",
+          "count": "100"
+        }
+      },
+      "names": ["C_CUSTOMER_ID", "TOTAL_SALES", "TOTAL_REVENUE", "AVERAGE_PROFIT", "LAST_SALE_DATE"]
+    }
+  }],
+  "version": {
+    "minorNumber": 77,
+    "producer": "isthmus"
+  },
+  "extensionUrns": [{
+    "extensionUrnAnchor": 3,
+    "urn": "extension:io.substrait:functions_arithmetic_decimal"
+  }, {
+    "extensionUrnAnchor": 1,
+    "urn": "extension:io.substrait:functions_comparison"
+  }, {
+    "extensionUrnAnchor": 4,
+    "urn": "extension:io.substrait:functions_arithmetic"
+  }, {
+    "extensionUrnAnchor": 2,
+    "urn": "extension:io.substrait:functions_aggregate_generic"
+  }]
+}

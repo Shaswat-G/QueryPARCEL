@@ -1,0 +1,213 @@
+# =============================================================================
+# Final Thesis Training Configuration
+# Mixed TPC-H + TPC-DS Training for Cross-Schema Generalization
+# =============================================================================
+#
+# Model: BottomUpGNN with 144-dim embeddings (~800k params)
+# Data: TPC-H (~1960 queries) + TPC-DS (~4388 queries) = ~6348 total
+# Split: 80-10-10 per schema
+# Evaluation: Routing evaluated separately per schema post-training
+#
+# =============================================================================
+
+# =============================================================================
+# Experiment Metadata
+# =============================================================================
+experiment:
+  name: "Winning Run"
+  description: "Joint training on TPC-H and TPC-DS for cross-schema generalization. 112-dim embeddings, ~500k params, seed 123."
+  dataset: "mixed_tpch_tpcds"
+  dataset_version: "v1"
+  paradigm: "multi_metric_joint"
+  job_type: "train"
+  tags:
+    - thesis-final
+    - mixed-schema
+    - tpch
+    - tpcds
+    - huber-log
+    - equal-weights
+    - cross-schema-generalization
+
+# =============================================================================
+# Weights & Biases Configuration
+# =============================================================================
+wandb:
+  project: "flexdata-metric-prediction"
+  entity: shazz_go-eth-zurich
+  mode: "online"
+  log_code: false
+  log_artifacts: true
+
+# =============================================================================
+# Data Configuration - Both TPC-H and TPC-DS
+# =============================================================================
+data:
+  tpch:
+    labels_path:
+      presto-w1: flexdata_metric_prediction/input_data_warehouse/processed_metrics/tpch_presto-w1.csv
+      presto-w4: flexdata_metric_prediction/input_data_warehouse/processed_metrics/tpch_presto-w4.csv
+      spark-w1: flexdata_metric_prediction/input_data_warehouse/processed_metrics/tpch_spark-w1.csv
+      spark-w4: flexdata_metric_prediction/input_data_warehouse/processed_metrics/tpch_spark-w4.csv
+    plan_path: flexdata_metric_prediction/query_plans/tpch_old_without_subq_12Dec
+    queries_path: flexdata_metric_prediction/input_data_warehouse/queries/tpch
+    query_range: [1, 3200]
+    num_test: 196 # 10% of ~1960
+    num_val: 196 # 10% of ~1960
+    metrics:
+      presto-w1:
+        time: elapsedTime
+        memory: peakNodeTotalMemory
+      presto-w4:
+        time: elapsedTime
+        memory: peakNodeTotalMemory
+      spark-w1:
+        time: wall_clock_duration
+        memory: on_heap_execution_memory
+      spark-w4:
+        time: wall_clock_duration
+        memory: on_heap_execution_memory
+
+  tpcds:
+    labels_path:
+      presto-w1: flexdata_metric_prediction/input_data_warehouse/processed_metrics/tpcds_presto-w1.csv
+      presto-w4: flexdata_metric_prediction/input_data_warehouse/processed_metrics/tpcds_presto-w4.csv
+      spark-w1: flexdata_metric_prediction/input_data_warehouse/processed_metrics/tpcds_spark-w1.csv
+      spark-w4: flexdata_metric_prediction/input_data_warehouse/processed_metrics/tpcds_spark-w4.csv
+    plan_path: flexdata_metric_prediction/query_plans/tpcds
+    queries_path: flexdata_metric_prediction/input_data_warehouse/queries/tpcds
+    query_range: [1, 4674]
+    num_test: 439 # 10% of ~4388
+    num_val: 439 # 10% of ~4388
+    metrics:
+      presto-w1:
+        time: elapsedTime
+        memory: peakNodeTotalMemory
+      presto-w4:
+        time: elapsedTime
+        memory: peakNodeTotalMemory
+      spark-w1:
+        time: wall_clock_duration
+        memory: on_heap_execution_memory
+      spark-w4:
+        time: wall_clock_duration
+        memory: on_heap_execution_memory
+
+# =============================================================================
+# Encoder Configuration
+# =============================================================================
+encoder:
+  encoder: hintEncoder
+
+# =============================================================================
+# Model Configuration (~800k parameters, 144-dim embeddings)
+# =============================================================================
+model:
+  model_type: BottomUpGNN
+
+  # Hidden state MLP: projects node features to embedding space
+  hidden_mlp:
+    activation: GELU
+    dropout: 0
+    hidden_dim: 112
+    num_layers: 1
+    output_dim: 112
+    width_factor: 1.15
+
+  # Output MLP: processes after message passing
+  out_mlp:
+    activation: LeakyRelu
+    dropout: 0
+    hidden_dim: 168
+    num_layers: 0
+    width_factor: 1
+
+  # Final MLP: produces graph-level embedding
+  final_mlp:
+    activation: LeakyRelu
+    dropout: 0
+    hidden_dim: 112
+    num_layers: 0
+    output_dim: 112
+    width_factor: 1
+
+  # Per-engine prediction head
+  head:
+    activation: LeakyRelu
+    dropout: 0
+    hidden_dim: 84
+    num_layers: 1
+    output_dim: 2 # [time, memory] - overridden by script
+    width_factor: 0.7
+
+  # Graph pooling
+  mean_pool: true
+
+# =============================================================================
+# Training Configuration
+# =============================================================================
+training:
+  # Optimization
+  batch_size: 64
+  epochs: 1000
+  lr: 0.001
+  optimizer: AdamW
+  weight_decay: 0.01
+  grad_clip_norm: 1.0
+
+  # Reproducibility
+  seed: 123
+
+  # Device and precision
+  device: cpu
+  dtype: float64
+
+  # Learning rate scheduler
+  scheduler:
+    type: ReduceLROnPlateau
+    factor: 0.5
+    patience: 25
+    cooldown: 25
+    mode: min
+    monitor: val_loss
+
+  # Early stopping
+  early_stopping_patience: 50
+
+  # Loss configuration
+  loss_function: HuberLoss
+  huber_delta: 2.0
+
+  # Equal metric weights (time and memory equally important)
+  metric_weights:
+    time: 0.5
+    memory: 0.5
+
+  # Checkpointing
+  checkpoint_dir: ./checkpoints
+  save_best_only: true
+  monitor_metric: val_loss
+
+  # Logging
+  log_dir: ./logs
+
+# =============================================================================
+# Routing Evaluation Configuration
+# =============================================================================
+# NOTE: For thesis, run separate per-schema evaluation post-training using
+# the saved checkpoint. This config runs combined evaluation during training.
+evaluation:
+  enabled: true
+
+  tasks:
+    - MIN_TIME
+    - MIN_COST
+    - MIN_COST_TIME_SLO
+    - MIN_TIME_COST_SLO
+
+  slo_percentiles:
+    - 50
+    - 75
+    - 90
+
+  output_dir: ./routing_eval_results

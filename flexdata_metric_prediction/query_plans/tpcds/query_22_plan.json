@@ -1,0 +1,202 @@
+{
+  "extensionUris": [{
+    "extensionUriAnchor": 2,
+    "uri": "/functions_aggregate_generic.yaml"
+  }, {
+    "extensionUriAnchor": 3,
+    "uri": "/functions_arithmetic.yaml"
+  }, {
+    "extensionUriAnchor": 1,
+    "uri": "/functions_comparison.yaml"
+  }],
+  "extensions": [{
+    "extensionFunction": {
+      "extensionUriReference": 1,
+      "functionAnchor": 1,
+      "name": "equal:any_any",
+      "extensionUrnReference": 1
+    }
+  }, {
+    "extensionFunction": {
+      "extensionUriReference": 2,
+      "functionAnchor": 2,
+      "name": "count:",
+      "extensionUrnReference": 2
+    }
+  }, {
+    "extensionFunction": {
+      "extensionUriReference": 3,
+      "functionAnchor": 3,
+      "name": "avg:i32",
+      "extensionUrnReference": 3
+    }
+  }],
+  "relations": [{
+    "root": {
+      "input": {
+        "aggregate": {
+          "common": {
+            "direct": {
+            },
+            "hint": {
+              "alias": "avgSize,rowCount",
+              "outputNames": ["4.0", "1.0"]
+            }
+          },
+          "input": {
+            "filter": {
+              "common": {
+                "direct": {
+                },
+                "hint": {
+                  "alias": "avgSize,rowCount",
+                  "outputNames": ["38.57142857142857", "1.0"]
+                }
+              },
+              "input": {
+                "read": {
+                  "common": {
+                    "direct": {
+                    },
+                    "hint": {
+                      "alias": "avgSize,rowCount,CD_DEMO_SK:numNulls,CD_DEMO_SK:numDVs,CD_DEMO_SK:colType,CD_DEMO_SK:avgColLen,CD_DEMO_SK:maxColLen,CD_GENDER:numNulls,CD_GENDER:numDVs,CD_GENDER:colType,CD_GENDER:avgColLen,CD_GENDER:maxColLen,CD_MARITAL_STATUS:numNulls,CD_MARITAL_STATUS:numDVs,CD_MARITAL_STATUS:colType,CD_MARITAL_STATUS:avgColLen,CD_MARITAL_STATUS:maxColLen,CD_EDUCATION_STATUS:numNulls,CD_EDUCATION_STATUS:numDVs,CD_EDUCATION_STATUS:colType,CD_EDUCATION_STATUS:avgColLen,CD_EDUCATION_STATUS:maxColLen,CD_PURCHASE_ESTIMATE:numNulls,CD_PURCHASE_ESTIMATE:numDVs,CD_PURCHASE_ESTIMATE:colType,CD_PURCHASE_ESTIMATE:avgColLen,CD_PURCHASE_ESTIMATE:maxColLen,CD_CREDIT_RATING:numNulls,CD_CREDIT_RATING:numDVs,CD_CREDIT_RATING:colType,CD_CREDIT_RATING:avgColLen,CD_CREDIT_RATING:maxColLen,CD_DEP_COUNT:numNulls,CD_DEP_COUNT:numDVs,CD_DEP_COUNT:colType,CD_DEP_COUNT:avgColLen,CD_DEP_COUNT:maxColLen,CD_DEP_EMPLOYED_COUNT:numNulls,CD_DEP_EMPLOYED_COUNT:numDVs,CD_DEP_EMPLOYED_COUNT:colType,CD_DEP_EMPLOYED_COUNT:avgColLen,CD_DEP_EMPLOYED_COUNT:maxColLen,CD_DEP_COLLEGE_COUNT:numNulls,CD_DEP_COLLEGE_COUNT:numDVs,CD_DEP_COLLEGE_COUNT:colType,CD_DEP_COLLEGE_COUNT:avgColLen,CD_DEP_COLLEGE_COUNT:maxColLen",
+                      "outputNames": ["38.57142857142857", "1920800.0", "0", "1890006", "INTEGER", "4.0", "4", "0", "2", "VARCHAR", "1.0", "1", "0", "5", "VARCHAR", "1.0", "1", "0", "7", "VARCHAR", "9.571428571428571", "15", "0", "20", "INTEGER", "4.0", "4", "0", "4", "VARCHAR", "7.0", "9", "0", "7", "INTEGER", "4.0", "4", "0", "7", "INTEGER", "4.0", "4", "0", "7", "INTEGER", "4.0", "4"]
+                    }
+                  },
+                  "baseSchema": {
+                    "names": ["CD_DEMO_SK", "CD_GENDER", "CD_MARITAL_STATUS", "CD_EDUCATION_STATUS", "CD_PURCHASE_ESTIMATE", "CD_CREDIT_RATING", "CD_DEP_COUNT", "CD_DEP_EMPLOYED_COUNT", "CD_DEP_COLLEGE_COUNT"],
+                    "struct": {
+                      "types": [{
+                        "i32": {
+                          "nullability": "NULLABILITY_NULLABLE"
+                        }
+                      }, {
+                        "string": {
+                          "nullability": "NULLABILITY_NULLABLE"
+                        }
+                      }, {
+                        "string": {
+                          "nullability": "NULLABILITY_NULLABLE"
+                        }
+                      }, {
+                        "string": {
+                          "nullability": "NULLABILITY_NULLABLE"
+                        }
+                      }, {
+                        "i32": {
+                          "nullability": "NULLABILITY_NULLABLE"
+                        }
+                      }, {
+                        "string": {
+                          "nullability": "NULLABILITY_NULLABLE"
+                        }
+                      }, {
+                        "i32": {
+                          "nullability": "NULLABILITY_NULLABLE"
+                        }
+                      }, {
+                        "i32": {
+                          "nullability": "NULLABILITY_NULLABLE"
+                        }
+                      }, {
+                        "i32": {
+                          "nullability": "NULLABILITY_NULLABLE"
+                        }
+                      }],
+                      "nullability": "NULLABILITY_REQUIRED"
+                    }
+                  },
+                  "namedTable": {
+                    "names": ["CUSTOMER_DEMOGRAPHICS"]
+                  }
+                }
+              },
+              "condition": {
+                "scalarFunction": {
+                  "functionReference": 1,
+                  "outputType": {
+                    "bool": {
+                      "nullability": "NULLABILITY_NULLABLE"
+                    }
+                  },
+                  "arguments": [{
+                    "value": {
+                      "selection": {
+                        "directReference": {
+                          "structField": {
+                            "field": 1
+                          }
+                        },
+                        "rootReference": {
+                        }
+                      }
+                    }
+                  }, {
+                    "value": {
+                      "literal": {
+                        "string": "F"
+                      }
+                    }
+                  }]
+                }
+              }
+            }
+          },
+          "groupings": [{
+          }],
+          "measures": [{
+            "measure": {
+              "functionReference": 2,
+              "phase": "AGGREGATION_PHASE_INITIAL_TO_RESULT",
+              "outputType": {
+                "i64": {
+                  "nullability": "NULLABILITY_REQUIRED"
+                }
+              },
+              "invocation": "AGGREGATION_INVOCATION_ALL"
+            }
+          }, {
+            "measure": {
+              "functionReference": 3,
+              "phase": "AGGREGATION_PHASE_INITIAL_TO_RESULT",
+              "outputType": {
+                "i32": {
+                  "nullability": "NULLABILITY_NULLABLE"
+                }
+              },
+              "invocation": "AGGREGATION_INVOCATION_ALL",
+              "arguments": [{
+                "value": {
+                  "selection": {
+                    "directReference": {
+                      "structField": {
+                        "field": 4
+                      }
+                    },
+                    "rootReference": {
+                    }
+                  }
+                }
+              }]
+            }
+          }]
+        }
+      },
+      "names": ["TOTAL_CUSTOMERS", "AVERAGE_PURCHASE_ESTIMATE"]
+    }
+  }],
+  "version": {
+    "minorNumber": 77,
+    "producer": "isthmus"
+  },
+  "extensionUrns": [{
+    "extensionUrnAnchor": 1,
+    "urn": "extension:io.substrait:functions_comparison"
+  }, {
+    "extensionUrnAnchor": 3,
+    "urn": "extension:io.substrait:functions_arithmetic"
+  }, {
+    "extensionUrnAnchor": 2,
+    "urn": "extension:io.substrait:functions_aggregate_generic"
+  }]
+}

@@ -1,0 +1,241 @@
+# Input Data Warehouse - Ingestion Configuration
+# This configuration defines the metrics to extract from each query execution engine
+
+# Global settings
+global:
+  num_queries: 4674 #3200
+  num_runs: 3
+  total_queries_per_engine: 14022 #9600 # num_queries * num_runs
+
+  # Output configuration
+  output_dir: "../processed_metrics"
+
+  # Query ID format: {schema}_q{query_num}_run{run_num}
+  query_id_format: "{schema}_q{query_num}_run{run_num}"
+
+  # Error handling
+  handle_failed_queries: true # Include failed queries with null metrics
+  failed_query_indicator: "empty_json" # How to identify failed queries
+
+  # List of schemas to process
+  schemas:
+    # - tpch
+    - tpcds
+    # - imdb
+
+# Schema-specific configuration
+schemas:
+  # tpch:
+  #   # Raw data directories (relative to etl_pipeline/)
+  #   raw_metrics_dir: "../raw_metrics/tpch"
+  #   query_plans_dir: "../query_plans/tpch"
+  #   queries_dir: "../queries/tpch"
+
+  tpcds:
+    # Raw data directories (relative to etl_pipeline/)
+    raw_metrics_dir: "../raw_metrics/tpcds"
+    query_plans_dir: "../query_plans/tpcds"
+    queries_dir: "../queries/tpcds"
+
+    # Engines to process for this schema
+    engines:
+      presto:
+        - name: "presto-w1"
+          data_dir: "presto-w1" # Relative to raw_metrics_dir
+        - name: "presto-w4"
+          data_dir: "presto-w4"
+      spark:
+        - name: "spark-w1"
+          data_dir: "spark-w1"
+        - name: "spark-w4"
+          data_dir: "spark-w4"
+
+    # Output file naming: {schema}_{engine}.csv
+    output_format: "{schema}_{engine}.csv"
+
+  # tpcds:
+  #   raw_metrics_dir: "../raw_metrics/tpcds"
+  #   query_plans_dir: "../query_plans/tpcds"
+  #   queries_dir: "../queries/tpcds"
+  #   engines:
+  #     presto:
+  #       - name: "presto-w1"
+  #         data_dir: "presto-w1"
+  #       - name: "presto-w4"
+  #         data_dir: "presto-w4"
+  #     spark:
+  #       - name: "spark-w1"
+  #         data_dir: "spark-w1"
+  #       - name: "spark-w4"
+  #         data_dir: "spark-w4"
+  #   output_format: "{schema}_{engine}.csv"
+
+# Presto-specific configuration (applies to all presto engines across schemas)
+presto:
+  # Standard units for metric types
+  standard_units:
+    time: "s" # All time metrics converted to seconds
+    size: "MB" # All size/memory metrics converted to megabytes
+
+  # queryStats fields to extract (True = extract, False = skip)
+  # Standard unit is automatically applied based on metric type
+  queryStats_fields:
+    # Time metrics (converted to seconds)
+    elapsedTime: { extract: true, standard_unit: "s" }
+    executionTime: { extract: true, standard_unit: "s" }
+    queuedTime: { extract: true, standard_unit: "s" }
+    waitingForPrerequisitesTime: { extract: true, standard_unit: "s" }
+    resourceWaitingTime: { extract: true, standard_unit: "s" }
+    semanticAnalyzingTime: { extract: true, standard_unit: "s" }
+    columnAccessPermissionCheckingTime: { extract: true, standard_unit: "s" }
+    dispatchingTime: { extract: true, standard_unit: "s" }
+    analysisTime: { extract: true, standard_unit: "s" }
+    totalPlanningTime: { extract: true, standard_unit: "s" }
+    finishingTime: { extract: true, standard_unit: "s" }
+    totalScheduledTime: { extract: true, standard_unit: "s" }
+    totalCpuTime: { extract: true, standard_unit: "s" }
+    retriedCpuTime: { extract: true, standard_unit: "s" }
+    totalBlockedTime: { extract: true, standard_unit: "s" }
+
+    # Memory metrics (converted to MB)
+    cumulativeUserMemory: { extract: true, standard_unit: "MB" }
+    cumulativeTotalMemory: { extract: true, standard_unit: "MB" }
+    userMemoryReservation: { extract: true, standard_unit: "MB" }
+    totalMemoryReservation: { extract: true, standard_unit: "MB" }
+    peakUserMemoryReservation: { extract: true, standard_unit: "MB" }
+    peakTotalMemoryReservation: { extract: true, standard_unit: "MB" }
+    peakTaskUserMemory: { extract: true, standard_unit: "MB" }
+    peakTaskTotalMemory: { extract: true, standard_unit: "MB" }
+    peakNodeTotalMemory: { extract: true, standard_unit: "MB" }
+    totalAllocation: { extract: true, standard_unit: "MB" }
+
+    # Size metrics (converted to MB)
+    rawInputDataSize: { extract: true, standard_unit: "MB" }
+    processedInputDataSize: { extract: true, standard_unit: "MB" }
+    shuffledDataSize: { extract: true, standard_unit: "MB" }
+    outputDataSize: { extract: true, standard_unit: "MB" }
+    writtenOutputLogicalDataSize: { extract: true, standard_unit: "MB" }
+    writtenOutputPhysicalDataSize: { extract: true, standard_unit: "MB" }
+    writtenIntermediatePhysicalDataSize: { extract: true, standard_unit: "MB" }
+    spilledDataSize: { extract: true, standard_unit: "MB" }
+
+    # Count metrics (no conversion)
+    totalTasks: { extract: true }
+    completedTasks: { extract: true }
+    failedTasks: { extract: true }
+    totalDrivers: { extract: true }
+    completedDrivers: { extract: true }
+    totalSplits: { extract: true }
+    completedSplits: { extract: true }
+    outputPositions: { extract: true }
+
+    # Skip these complex nested structures
+    stageGcStatistics: { extract: false }
+    operatorSummaries: { extract: false }
+    runtimeStats: { extract: false }
+
+# Spark-specific configuration (applies to all spark engines across schemas)
+spark:
+  # Standard units for metric types
+  standard_units:
+    time: "s" # All time metrics converted to seconds
+    size: "MB" # All size/memory metrics converted to megabytes
+
+  # Metrics to extract from Spark event logs
+  # These will be computed from the event log entries
+  metrics:
+    # Execution metrics
+    - name: "execution_time_ms"
+      source: "job_completion"
+      description: "Total query execution time from job start to completion"
+      required: true
+      calculation: "completion_time - submission_time"
+
+    - name: "task_execution_time_ms"
+      source: "task_metrics"
+      description: "Sum of all task execution times"
+      required: false
+      aggregation: "sum"
+
+    - name: "scheduler_delay_ms"
+      source: "task_metrics"
+      description: "Sum of scheduler delays across tasks"
+      required: false
+      aggregation: "sum"
+
+    # Resource metrics
+    - name: "executor_cpu_time_ms"
+      source: "task_metrics"
+      description: "Total CPU time used by executors"
+      required: false
+      aggregation: "sum"
+
+    - name: "executor_run_time_ms"
+      source: "task_metrics"
+      description: "Total executor run time"
+      required: false
+      aggregation: "sum"
+
+    - name: "peak_memory_bytes"
+      source: "task_metrics"
+      description: "Peak memory usage across all tasks"
+      required: false
+      aggregation: "max"
+
+    - name: "jvm_gc_time_ms"
+      source: "task_metrics"
+      description: "Total JVM garbage collection time"
+      required: false
+      aggregation: "sum"
+
+    # I/O metrics
+    - name: "bytes_read"
+      source: "task_metrics"
+      description: "Total bytes read from all sources"
+      required: false
+      aggregation: "sum"
+
+    - name: "bytes_written"
+      source: "task_metrics"
+      description: "Total bytes written"
+      required: false
+      aggregation: "sum"
+
+    - name: "shuffle_read_bytes"
+      source: "task_metrics"
+      description: "Total shuffle read bytes"
+      required: false
+      aggregation: "sum"
+
+    - name: "shuffle_write_bytes"
+      source: "task_metrics"
+      description: "Total shuffle write bytes"
+      required: false
+      aggregation: "sum"
+
+    # Task metrics
+    - name: "num_tasks"
+      source: "job_info"
+      description: "Total number of tasks in the job"
+      required: false
+
+    - name: "num_stages"
+      source: "job_info"
+      description: "Total number of stages in the job"
+      required: false
+
+    - name: "failed_tasks"
+      source: "job_info"
+      description: "Number of failed tasks"
+      required: false
+
+    # State metrics
+    - name: "job_result"
+      source: "job_completion"
+      description: "Result of the job (JobSucceeded, JobFailed)"
+      required: true
+
+    - name: "failure_reason"
+      source: "job_completion"
+      description: "Reason for failure if job failed"
+      required: false

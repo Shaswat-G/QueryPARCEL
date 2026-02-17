@@ -1,0 +1,417 @@
+{
+  "extensionUris": [{
+    "extensionUriAnchor": 1,
+    "uri": "/functions_comparison.yaml"
+  }],
+  "extensions": [{
+    "extensionFunction": {
+      "extensionUriReference": 1,
+      "functionAnchor": 1,
+      "name": "equal:any_any",
+      "extensionUrnReference": 1
+    }
+  }],
+  "relations": [{
+    "root": {
+      "input": {
+        "project": {
+          "common": {
+            "emit": {
+              "outputMapping": [27, 28, 29]
+            },
+            "hint": {
+              "alias": "avgSize,rowCount",
+              "outputNames": ["54.35520026614452", "1.0124857868184984"]
+            }
+          },
+          "input": {
+            "sort": {
+              "common": {
+                "direct": {
+                },
+                "hint": {
+                  "alias": "avgSize,rowCount",
+                  "outputNames": ["220.54666742457235", "1.0124857868184984"]
+                }
+              },
+              "input": {
+                "join": {
+                  "common": {
+                    "direct": {
+                    },
+                    "hint": {
+                      "alias": "avgSize,rowCount",
+                      "outputNames": ["220.54666742457235", "1.0124857868184984"]
+                    }
+                  },
+                  "left": {
+                    "filter": {
+                      "common": {
+                        "direct": {
+                        },
+                        "hint": {
+                          "alias": "avgSize,rowCount",
+                          "outputNames": ["108.9063406646497", "1.0"]
+                        }
+                      },
+                      "input": {
+                        "read": {
+                          "common": {
+                            "direct": {
+                            },
+                            "hint": {
+                              "alias": "avgSize,rowCount,ID:numNulls,ID:numDVs,ID:colType,ID:avgColLen,ID:maxColLen,MOVIE_ID:numNulls,MOVIE_ID:numDVs,MOVIE_ID:colType,MOVIE_ID:avgColLen,MOVIE_ID:maxColLen,TITLE:numNulls,TITLE:numDVs,TITLE:colType,TITLE:avgColLen,TITLE:maxColLen,IMDB_INDEX:numNulls,IMDB_INDEX:numDVs,IMDB_INDEX:colType,IMDB_INDEX:avgColLen,IMDB_INDEX:maxColLen,KIND_ID:numNulls,KIND_ID:numDVs,KIND_ID:colType,KIND_ID:avgColLen,KIND_ID:maxColLen,PRODUCTION_YEAR:numNulls,PRODUCTION_YEAR:numDVs,PRODUCTION_YEAR:colType,PRODUCTION_YEAR:avgColLen,PRODUCTION_YEAR:maxColLen,PHONETIC_CODE:numNulls,PHONETIC_CODE:numDVs,PHONETIC_CODE:colType,PHONETIC_CODE:avgColLen,PHONETIC_CODE:maxColLen,EPISODE_OF_ID:numNulls,EPISODE_OF_ID:numDVs,EPISODE_OF_ID:colType,EPISODE_OF_ID:avgColLen,EPISODE_OF_ID:maxColLen,SEASON_NR:numNulls,SEASON_NR:numDVs,SEASON_NR:colType,SEASON_NR:avgColLen,SEASON_NR:maxColLen,EPISODE_NR:numNulls,EPISODE_NR:numDVs,EPISODE_NR:colType,EPISODE_NR:avgColLen,EPISODE_NR:maxColLen,NOTE:numNulls,NOTE:numDVs,NOTE:colType,NOTE:avgColLen,NOTE:maxColLen,MD5SUM:numNulls,MD5SUM:numDVs,MD5SUM:colType,MD5SUM:avgColLen,MD5SUM:maxColLen",
+                              "outputNames": ["108.9063406646497", "361472.0", "0", "355000", "INTEGER", "4.0", "4", "0", "203017", "INTEGER", "4.0", "4", "0", "303531", "VARCHAR", "20.866360326664307", "564", "358492", "13", "VARCHAR(4)", "1.4167785234899328", "4", "0", "6", "INTEGER", "4.0", "4", "3032", "129", "INTEGER", "4.0", "4", "5194", "19515", "VARCHAR(5)", "4.7467595529333835", "5", "358596", "770", "INTEGER", "4.0", "4", "358855", "41", "INTEGER", "4.0", "4", "358879", "163", "INTEGER", "4.0", "4", "27968", "3315", "VARCHAR(72)", "21.87644226156208", "72", "0", "351537", "VARCHAR(32)", "32.0", "32"]
+                            }
+                          },
+                          "baseSchema": {
+                            "names": ["ID", "MOVIE_ID", "TITLE", "IMDB_INDEX", "KIND_ID", "PRODUCTION_YEAR", "PHONETIC_CODE", "EPISODE_OF_ID", "SEASON_NR", "EPISODE_NR", "NOTE", "MD5SUM"],
+                            "struct": {
+                              "types": [{
+                                "i32": {
+                                  "nullability": "NULLABILITY_NULLABLE"
+                                }
+                              }, {
+                                "i32": {
+                                  "nullability": "NULLABILITY_NULLABLE"
+                                }
+                              }, {
+                                "string": {
+                                  "nullability": "NULLABILITY_NULLABLE"
+                                }
+                              }, {
+                                "varchar": {
+                                  "length": 4,
+                                  "nullability": "NULLABILITY_NULLABLE"
+                                }
+                              }, {
+                                "i32": {
+                                  "nullability": "NULLABILITY_NULLABLE"
+                                }
+                              }, {
+                                "i32": {
+                                  "nullability": "NULLABILITY_NULLABLE"
+                                }
+                              }, {
+                                "varchar": {
+                                  "length": 5,
+                                  "nullability": "NULLABILITY_NULLABLE"
+                                }
+                              }, {
+                                "i32": {
+                                  "nullability": "NULLABILITY_NULLABLE"
+                                }
+                              }, {
+                                "i32": {
+                                  "nullability": "NULLABILITY_NULLABLE"
+                                }
+                              }, {
+                                "i32": {
+                                  "nullability": "NULLABILITY_NULLABLE"
+                                }
+                              }, {
+                                "varchar": {
+                                  "length": 72,
+                                  "nullability": "NULLABILITY_NULLABLE"
+                                }
+                              }, {
+                                "varchar": {
+                                  "length": 32,
+                                  "nullability": "NULLABILITY_NULLABLE"
+                                }
+                              }],
+                              "nullability": "NULLABILITY_REQUIRED"
+                            }
+                          },
+                          "namedTable": {
+                            "names": ["AKA_TITLE"]
+                          }
+                        }
+                      },
+                      "condition": {
+                        "scalarFunction": {
+                          "functionReference": 1,
+                          "outputType": {
+                            "bool": {
+                              "nullability": "NULLABILITY_NULLABLE"
+                            }
+                          },
+                          "arguments": [{
+                            "value": {
+                              "selection": {
+                                "directReference": {
+                                  "structField": {
+                                    "field": 5
+                                  }
+                                },
+                                "rootReference": {
+                                }
+                              }
+                            }
+                          }, {
+                            "value": {
+                              "literal": {
+                                "i32": 2023
+                              }
+                            }
+                          }]
+                        }
+                      }
+                    }
+                  },
+                  "right": {
+                    "join": {
+                      "common": {
+                        "direct": {
+                        },
+                        "hint": {
+                          "alias": "avgSize,rowCount",
+                          "outputNames": ["111.64032675992266", "1802686.0"]
+                        }
+                      },
+                      "left": {
+                        "read": {
+                          "common": {
+                            "direct": {
+                            },
+                            "hint": {
+                              "alias": "avgSize,rowCount,ID:numNulls,ID:numDVs,ID:colType,ID:avgColLen,ID:maxColLen,PERSON_ID:numNulls,PERSON_ID:numDVs,PERSON_ID:colType,PERSON_ID:avgColLen,PERSON_ID:maxColLen,NAME:numNulls,NAME:numDVs,NAME:colType,NAME:avgColLen,NAME:maxColLen,IMDB_INDEX:numNulls,IMDB_INDEX:numDVs,IMDB_INDEX:colType,IMDB_INDEX:avgColLen,IMDB_INDEX:maxColLen,NAME_PCODE_CF:numNulls,NAME_PCODE_CF:numDVs,NAME_PCODE_CF:colType,NAME_PCODE_CF:avgColLen,NAME_PCODE_CF:maxColLen,NAME_PCODE_NF:numNulls,NAME_PCODE_NF:numDVs,NAME_PCODE_NF:colType,NAME_PCODE_NF:avgColLen,NAME_PCODE_NF:maxColLen,SURNAME_PCODE:numNulls,SURNAME_PCODE:numDVs,SURNAME_PCODE:colType,SURNAME_PCODE:avgColLen,SURNAME_PCODE:maxColLen,MD5SUM:numNulls,MD5SUM:numDVs,MD5SUM:colType,MD5SUM:avgColLen,MD5SUM:maxColLen",
+                              "outputNames": ["69.85797780832496", "1802686.0", "0", "1787254", "INTEGER", "4.0", "4", "0", "1209164", "INTEGER", "4.0", "4", "2", "783762", "VARCHAR", "15.706490987882512", "218", "1802652", "6", "VARCHAR(3)", "1.7058823529411764", "3", "218", "21668", "VARCHAR(11)", "4.603765503742646", "5", "218536", "20562", "VARCHAR(11)", "4.807684878325916", "5", "560492", "4287", "VARCHAR(11)", "3.0341540854327103", "4", "0", "811459", "VARCHAR(65)", "32.0", "32"]
+                            }
+                          },
+                          "baseSchema": {
+                            "names": ["ID", "PERSON_ID", "NAME", "IMDB_INDEX", "NAME_PCODE_CF", "NAME_PCODE_NF", "SURNAME_PCODE", "MD5SUM"],
+                            "struct": {
+                              "types": [{
+                                "i32": {
+                                  "nullability": "NULLABILITY_NULLABLE"
+                                }
+                              }, {
+                                "i32": {
+                                  "nullability": "NULLABILITY_NULLABLE"
+                                }
+                              }, {
+                                "string": {
+                                  "nullability": "NULLABILITY_NULLABLE"
+                                }
+                              }, {
+                                "varchar": {
+                                  "length": 3,
+                                  "nullability": "NULLABILITY_NULLABLE"
+                                }
+                              }, {
+                                "varchar": {
+                                  "length": 11,
+                                  "nullability": "NULLABILITY_NULLABLE"
+                                }
+                              }, {
+                                "varchar": {
+                                  "length": 11,
+                                  "nullability": "NULLABILITY_NULLABLE"
+                                }
+                              }, {
+                                "varchar": {
+                                  "length": 11,
+                                  "nullability": "NULLABILITY_NULLABLE"
+                                }
+                              }, {
+                                "varchar": {
+                                  "length": 65,
+                                  "nullability": "NULLABILITY_NULLABLE"
+                                }
+                              }],
+                              "nullability": "NULLABILITY_REQUIRED"
+                            }
+                          },
+                          "namedTable": {
+                            "names": ["AKA_NAME"]
+                          }
+                        }
+                      },
+                      "right": {
+                        "read": {
+                          "common": {
+                            "direct": {
+                            },
+                            "hint": {
+                              "alias": "avgSize,rowCount,ID:numNulls,ID:numDVs,ID:colType,ID:avgColLen,ID:maxColLen,PERSON_ID:numNulls,PERSON_ID:numDVs,PERSON_ID:colType,PERSON_ID:avgColLen,PERSON_ID:maxColLen,MOVIE_ID:numNulls,MOVIE_ID:numDVs,MOVIE_ID:colType,MOVIE_ID:avgColLen,MOVIE_ID:maxColLen,PERSON_ROLE_ID:numNulls,PERSON_ROLE_ID:numDVs,PERSON_ROLE_ID:colType,PERSON_ROLE_ID:avgColLen,PERSON_ROLE_ID:maxColLen,NOTE:numNulls,NOTE:numDVs,NOTE:colType,NOTE:avgColLen,NOTE:maxColLen,NR_ORDER:numNulls,NR_ORDER:numDVs,NR_ORDER:colType,NR_ORDER:avgColLen,NR_ORDER:maxColLen,ROLE_ID:numNulls,ROLE_ID:numDVs,ROLE_ID:colType,ROLE_ID:avgColLen,ROLE_ID:maxColLen",
+                              "outputNames": ["41.7823489515977", "7.2488688E7", "0", "72488688", "INTEGER", "4.0", "4", "0", "4862964", "INTEGER", "4.0", "4", "0", "4567846", "INTEGER", "4.0", "4", "37345650", "6254828", "INTEGER", "4.0", "4", "44014504", "713652", "VARCHAR", "17.7823489515977", "922", "50919526", "1106", "INTEGER", "4.0", "4", "0", "11", "INTEGER", "4.0", "4"]
+                            }
+                          },
+                          "baseSchema": {
+                            "names": ["ID", "PERSON_ID", "MOVIE_ID", "PERSON_ROLE_ID", "NOTE", "NR_ORDER", "ROLE_ID"],
+                            "struct": {
+                              "types": [{
+                                "i32": {
+                                  "nullability": "NULLABILITY_NULLABLE"
+                                }
+                              }, {
+                                "i32": {
+                                  "nullability": "NULLABILITY_NULLABLE"
+                                }
+                              }, {
+                                "i32": {
+                                  "nullability": "NULLABILITY_NULLABLE"
+                                }
+                              }, {
+                                "i32": {
+                                  "nullability": "NULLABILITY_NULLABLE"
+                                }
+                              }, {
+                                "string": {
+                                  "nullability": "NULLABILITY_NULLABLE"
+                                }
+                              }, {
+                                "i32": {
+                                  "nullability": "NULLABILITY_NULLABLE"
+                                }
+                              }, {
+                                "i32": {
+                                  "nullability": "NULLABILITY_NULLABLE"
+                                }
+                              }],
+                              "nullability": "NULLABILITY_REQUIRED"
+                            }
+                          },
+                          "namedTable": {
+                            "names": ["CAST_INFO"]
+                          }
+                        }
+                      },
+                      "expression": {
+                        "scalarFunction": {
+                          "functionReference": 1,
+                          "outputType": {
+                            "bool": {
+                              "nullability": "NULLABILITY_NULLABLE"
+                            }
+                          },
+                          "arguments": [{
+                            "value": {
+                              "selection": {
+                                "directReference": {
+                                  "structField": {
+                                    "field": 1
+                                  }
+                                },
+                                "rootReference": {
+                                }
+                              }
+                            }
+                          }, {
+                            "value": {
+                              "selection": {
+                                "directReference": {
+                                  "structField": {
+                                    "field": 9
+                                  }
+                                },
+                                "rootReference": {
+                                }
+                              }
+                            }
+                          }]
+                        }
+                      },
+                      "type": "JOIN_TYPE_INNER"
+                    }
+                  },
+                  "expression": {
+                    "scalarFunction": {
+                      "functionReference": 1,
+                      "outputType": {
+                        "bool": {
+                          "nullability": "NULLABILITY_NULLABLE"
+                        }
+                      },
+                      "arguments": [{
+                        "value": {
+                          "selection": {
+                            "directReference": {
+                              "structField": {
+                                "field": 22
+                              }
+                            },
+                            "rootReference": {
+                            }
+                          }
+                        }
+                      }, {
+                        "value": {
+                          "selection": {
+                            "directReference": {
+                              "structField": {
+                                "field": 1
+                              }
+                            },
+                            "rootReference": {
+                            }
+                          }
+                        }
+                      }]
+                    }
+                  },
+                  "type": "JOIN_TYPE_INNER"
+                }
+              },
+              "sorts": [{
+                "expr": {
+                  "selection": {
+                    "directReference": {
+                      "structField": {
+                        "field": 14
+                      }
+                    },
+                    "rootReference": {
+                    }
+                  }
+                },
+                "direction": "SORT_DIRECTION_ASC_NULLS_LAST"
+              }]
+            }
+          },
+          "expressions": [{
+            "selection": {
+              "directReference": {
+                "structField": {
+                  "field": 14
+                }
+              },
+              "rootReference": {
+              }
+            }
+          }, {
+            "selection": {
+              "directReference": {
+                "structField": {
+                  "field": 2
+                }
+              },
+              "rootReference": {
+              }
+            }
+          }, {
+            "selection": {
+              "directReference": {
+                "structField": {
+                  "field": 24
+                }
+              },
+              "rootReference": {
+              }
+            }
+          }]
+        }
+      },
+      "names": ["NAME", "TITLE", "NOTE"]
+    }
+  }],
+  "version": {
+    "minorNumber": 77,
+    "producer": "isthmus"
+  },
+  "extensionUrns": [{
+    "extensionUrnAnchor": 1,
+    "urn": "extension:io.substrait:functions_comparison"
+  }]
+}

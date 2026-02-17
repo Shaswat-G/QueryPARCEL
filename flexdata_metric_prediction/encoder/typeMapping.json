@@ -1,0 +1,21 @@
+{
+    "int": 0,
+    "integer": 0,
+    "i8": 0,
+    "i16": 0,
+    "i32": 0,
+    "i64": 0,
+    "bigint": 0,
+    "double": 1,
+    "fp64": 1,
+    "char": 2,
+    "varchar": 2,
+    "var_char": 2,
+    "string": 2,
+    "fixed_char": 2,
+    "decimal": 3,
+    "date": 3,
+    "timestamp": 4,
+    "boolean": 5,
+    "null": 6
+}

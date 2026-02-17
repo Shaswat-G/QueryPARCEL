@@ -1,0 +1,752 @@
+{
+  "extensionUris": [{
+    "extensionUriAnchor": 3,
+    "uri": "/functions_arithmetic.yaml"
+  }, {
+    "extensionUriAnchor": 2,
+    "uri": "/functions_string.yaml"
+  }, {
+    "extensionUriAnchor": 1,
+    "uri": "/functions_comparison.yaml"
+  }],
+  "extensions": [{
+    "extensionFunction": {
+      "extensionUriReference": 1,
+      "functionAnchor": 1,
+      "name": "equal:any_any",
+      "extensionUrnReference": 1
+    }
+  }, {
+    "extensionFunction": {
+      "extensionUriReference": 2,
+      "functionAnchor": 2,
+      "name": "char_length:vchar",
+      "extensionUrnReference": 2
+    }
+  }, {
+    "extensionFunction": {
+      "extensionUriReference": 2,
+      "functionAnchor": 3,
+      "name": "char_length:fchar",
+      "extensionUrnReference": 2
+    }
+  }, {
+    "extensionFunction": {
+      "extensionUriReference": 3,
+      "functionAnchor": 4,
+      "name": "avg:i32",
+      "extensionUrnReference": 3
+    }
+  }],
+  "relations": [{
+    "root": {
+      "input": {
+        "aggregate": {
+          "common": {
+            "direct": {
+            },
+            "hint": {
+              "alias": "avgSize,rowCount",
+              "outputNames": ["20.0", "1.0"]
+            }
+          },
+          "input": {
+            "project": {
+              "common": {
+                "emit": {
+                  "outputMapping": [29, 30, 31, 32, 33]
+                },
+                "hint": {
+                  "alias": "avgSize,rowCount",
+                  "outputNames": ["20.0", "9.956653791740425"]
+                }
+              },
+              "input": {
+                "join": {
+                  "common": {
+                    "direct": {
+                    },
+                    "hint": {
+                      "alias": "avgSize,rowCount",
+                      "outputNames": ["597.5641564583333", "9.956653791740425"]
+                    }
+                  },
+                  "left": {
+                    "join": {
+                      "common": {
+                        "direct": {
+                        },
+                        "hint": {
+                          "alias": "avgSize,rowCount",
+                          "outputNames": ["178.16", "5.0"]
+                        }
+                      },
+                      "left": {
+                        "read": {
+                          "common": {
+                            "direct": {
+                            },
+                            "hint": {
+                              "alias": "avgSize,rowCount,R_REGIONKEY:numNulls,R_REGIONKEY:numDVs,R_REGIONKEY:colType,R_REGIONKEY:avgColLen,R_REGIONKEY:maxColLen,R_NAME:numNulls,R_NAME:numDVs,R_NAME:colType,R_NAME:avgColLen,R_NAME:maxColLen,R_COMMENT:numNulls,R_COMMENT:numDVs,R_COMMENT:colType,R_COMMENT:avgColLen,R_COMMENT:maxColLen",
+                              "outputNames": ["80.8", "5.0", "0", "5", "BIGINT", "8.0", "8", "0", "5", "CHAR(25)", "6.8", "11", "0", "5", "VARCHAR(152)", "66.0", "115"]
+                            }
+                          },
+                          "baseSchema": {
+                            "names": ["R_REGIONKEY", "R_NAME", "R_COMMENT"],
+                            "struct": {
+                              "types": [{
+                                "i64": {
+                                  "nullability": "NULLABILITY_REQUIRED"
+                                }
+                              }, {
+                                "fixedChar": {
+                                  "length": 25,
+                                  "nullability": "NULLABILITY_NULLABLE"
+                                }
+                              }, {
+                                "varchar": {
+                                  "length": 152,
+                                  "nullability": "NULLABILITY_NULLABLE"
+                                }
+                              }],
+                              "nullability": "NULLABILITY_REQUIRED"
+                            }
+                          },
+                          "namedTable": {
+                            "names": ["REGION"]
+                          }
+                        }
+                      },
+                      "right": {
+                        "read": {
+                          "common": {
+                            "direct": {
+                            },
+                            "hint": {
+                              "alias": "avgSize,rowCount,N_NATIONKEY:numNulls,N_NATIONKEY:numDVs,N_NATIONKEY:colType,N_NATIONKEY:avgColLen,N_NATIONKEY:maxColLen,N_NAME:numNulls,N_NAME:numDVs,N_NAME:colType,N_NAME:avgColLen,N_NAME:maxColLen,N_REGIONKEY:numNulls,N_REGIONKEY:numDVs,N_REGIONKEY:colType,N_REGIONKEY:avgColLen,N_REGIONKEY:maxColLen,N_COMMENT:numNulls,N_COMMENT:numDVs,N_COMMENT:colType,N_COMMENT:avgColLen,N_COMMENT:maxColLen",
+                              "outputNames": ["97.36", "25.0", "0", "25", "BIGINT", "8.0", "8", "0", "25", "CHAR(25)", "7.08", "14", "0", "5", "BIGINT", "8.0", "8", "0", "25", "VARCHAR(152)", "74.28", "114"]
+                            }
+                          },
+                          "baseSchema": {
+                            "names": ["N_NATIONKEY", "N_NAME", "N_REGIONKEY", "N_COMMENT"],
+                            "struct": {
+                              "types": [{
+                                "i64": {
+                                  "nullability": "NULLABILITY_REQUIRED"
+                                }
+                              }, {
+                                "fixedChar": {
+                                  "length": 25,
+                                  "nullability": "NULLABILITY_NULLABLE"
+                                }
+                              }, {
+                                "i64": {
+                                  "nullability": "NULLABILITY_REQUIRED"
+                                }
+                              }, {
+                                "varchar": {
+                                  "length": 152,
+                                  "nullability": "NULLABILITY_NULLABLE"
+                                }
+                              }],
+                              "nullability": "NULLABILITY_REQUIRED"
+                            }
+                          },
+                          "namedTable": {
+                            "names": ["NATION"]
+                          }
+                        }
+                      },
+                      "expression": {
+                        "scalarFunction": {
+                          "functionReference": 1,
+                          "outputType": {
+                            "bool": {
+                              "nullability": "NULLABILITY_REQUIRED"
+                            }
+                          },
+                          "arguments": [{
+                            "value": {
+                              "selection": {
+                                "directReference": {
+                                  "structField": {
+                                    "field": 5
+                                  }
+                                },
+                                "rootReference": {
+                                }
+                              }
+                            }
+                          }, {
+                            "value": {
+                              "selection": {
+                                "directReference": {
+                                  "structField": {
+                                  }
+                                },
+                                "rootReference": {
+                                }
+                              }
+                            }
+                          }]
+                        }
+                      },
+                      "type": "JOIN_TYPE_INNER"
+                    }
+                  },
+                  "right": {
+                    "join": {
+                      "common": {
+                        "direct": {
+                        },
+                        "hint": {
+                          "alias": "avgSize,rowCount",
+                          "outputNames": ["419.40415645833343", "1500000.0"]
+                        }
+                      },
+                      "left": {
+                        "read": {
+                          "common": {
+                            "direct": {
+                            },
+                            "hint": {
+                              "alias": "avgSize,rowCount,PS_PARTKEY:numNulls,PS_PARTKEY:numDVs,PS_PARTKEY:colType,PS_PARTKEY:avgColLen,PS_PARTKEY:maxColLen,PS_SUPPKEY:numNulls,PS_SUPPKEY:numDVs,PS_SUPPKEY:colType,PS_SUPPKEY:avgColLen,PS_SUPPKEY:maxColLen,PS_AVAILQTY:numNulls,PS_AVAILQTY:numDVs,PS_AVAILQTY:colType,PS_AVAILQTY:avgColLen,PS_AVAILQTY:maxColLen,PS_SUPPLYCOST:numNulls,PS_SUPPLYCOST:numDVs,PS_SUPPLYCOST:colType,PS_SUPPLYCOST:avgColLen,PS_SUPPLYCOST:maxColLen,PS_COMMENT:numNulls,PS_COMMENT:numDVs,PS_COMMENT:colType,PS_COMMENT:avgColLen,PS_COMMENT:maxColLen",
+                              "outputNames": ["147.491758125", "8000000.0", "0", "1982709", "BIGINT", "8.0", "8", "0", "102875", "BIGINT", "8.0", "8", "0", "10167", "INTEGER", "4.0", "4", "0", "99719", "DECIMAL(38, 0)", "4.0", "4", "0", "7750841", "VARCHAR(199)", "123.491758125", "198"]
+                            }
+                          },
+                          "baseSchema": {
+                            "names": ["PS_PARTKEY", "PS_SUPPKEY", "PS_AVAILQTY", "PS_SUPPLYCOST", "PS_COMMENT"],
+                            "struct": {
+                              "types": [{
+                                "i64": {
+                                  "nullability": "NULLABILITY_REQUIRED"
+                                }
+                              }, {
+                                "i64": {
+                                  "nullability": "NULLABILITY_REQUIRED"
+                                }
+                              }, {
+                                "i32": {
+                                  "nullability": "NULLABILITY_NULLABLE"
+                                }
+                              }, {
+                                "decimal": {
+                                  "precision": 38,
+                                  "nullability": "NULLABILITY_NULLABLE"
+                                }
+                              }, {
+                                "varchar": {
+                                  "length": 199,
+                                  "nullability": "NULLABILITY_NULLABLE"
+                                }
+                              }],
+                              "nullability": "NULLABILITY_REQUIRED"
+                            }
+                          },
+                          "namedTable": {
+                            "names": ["PARTSUPP"]
+                          }
+                        }
+                      },
+                      "right": {
+                        "join": {
+                          "common": {
+                            "direct": {
+                            },
+                            "hint": {
+                              "alias": "avgSize,rowCount",
+                              "outputNames": ["271.91239833333344", "1500000.0"]
+                            }
+                          },
+                          "left": {
+                            "read": {
+                              "common": {
+                                "direct": {
+                                },
+                                "hint": {
+                                  "alias": "avgSize,rowCount,C_CUSTKEY:numNulls,C_CUSTKEY:numDVs,C_CUSTKEY:colType,C_CUSTKEY:avgColLen,C_CUSTKEY:maxColLen,C_NAME:numNulls,C_NAME:numDVs,C_NAME:colType,C_NAME:avgColLen,C_NAME:maxColLen,C_ADDRESS:numNulls,C_ADDRESS:numDVs,C_ADDRESS:colType,C_ADDRESS:avgColLen,C_ADDRESS:maxColLen,C_NATIONKEY:numNulls,C_NATIONKEY:numDVs,C_NATIONKEY:colType,C_NATIONKEY:avgColLen,C_NATIONKEY:maxColLen,C_PHONE:numNulls,C_PHONE:numDVs,C_PHONE:colType,C_PHONE:avgColLen,C_PHONE:maxColLen,C_ACCTBAL:numNulls,C_ACCTBAL:numDVs,C_ACCTBAL:colType,C_ACCTBAL:avgColLen,C_ACCTBAL:maxColLen,C_MKTSEGMENT:numNulls,C_MKTSEGMENT:numDVs,C_MKTSEGMENT:colType,C_MKTSEGMENT:avgColLen,C_MKTSEGMENT:maxColLen,C_COMMENT:numNulls,C_COMMENT:numDVs,C_COMMENT:colType,C_COMMENT:avgColLen,C_COMMENT:maxColLen",
+                                  "outputNames": ["159.48384733333342", "1500000.0", "0", "1500000", "BIGINT", "8.0", "8", "0", "1466633", "VARCHAR(25)", "18.0", "18", "0", "1500000", "VARCHAR(40)", "25.0008086666667", "40", "0", "25", "BIGINT", "8.0", "8", "0", "1500000", "CHAR(15)", "15.0", "15", "0", "810240", "DECIMAL(38, 0)", "4.0", "4", "0", "5", "CHAR(10)", "8.99984", "10", "0", "1499938", "VARCHAR(117)", "72.4831986666667", "116"]
+                                }
+                              },
+                              "baseSchema": {
+                                "names": ["C_CUSTKEY", "C_NAME", "C_ADDRESS", "C_NATIONKEY", "C_PHONE", "C_ACCTBAL", "C_MKTSEGMENT", "C_COMMENT"],
+                                "struct": {
+                                  "types": [{
+                                    "i64": {
+                                      "nullability": "NULLABILITY_REQUIRED"
+                                    }
+                                  }, {
+                                    "varchar": {
+                                      "length": 25,
+                                      "nullability": "NULLABILITY_NULLABLE"
+                                    }
+                                  }, {
+                                    "varchar": {
+                                      "length": 40,
+                                      "nullability": "NULLABILITY_NULLABLE"
+                                    }
+                                  }, {
+                                    "i64": {
+                                      "nullability": "NULLABILITY_REQUIRED"
+                                    }
+                                  }, {
+                                    "fixedChar": {
+                                      "length": 15,
+                                      "nullability": "NULLABILITY_NULLABLE"
+                                    }
+                                  }, {
+                                    "decimal": {
+                                      "precision": 38,
+                                      "nullability": "NULLABILITY_NULLABLE"
+                                    }
+                                  }, {
+                                    "fixedChar": {
+                                      "length": 10,
+                                      "nullability": "NULLABILITY_NULLABLE"
+                                    }
+                                  }, {
+                                    "varchar": {
+                                      "length": 117,
+                                      "nullability": "NULLABILITY_NULLABLE"
+                                    }
+                                  }],
+                                  "nullability": "NULLABILITY_REQUIRED"
+                                }
+                              },
+                              "namedTable": {
+                                "names": ["CUSTOMER"]
+                              }
+                            }
+                          },
+                          "right": {
+                            "read": {
+                              "common": {
+                                "direct": {
+                                },
+                                "hint": {
+                                  "alias": "avgSize,rowCount,P_PARTKEY:numNulls,P_PARTKEY:numDVs,P_PARTKEY:colType,P_PARTKEY:avgColLen,P_PARTKEY:maxColLen,P_NAME:numNulls,P_NAME:numDVs,P_NAME:colType,P_NAME:avgColLen,P_NAME:maxColLen,P_MFGR:numNulls,P_MFGR:numDVs,P_MFGR:colType,P_MFGR:avgColLen,P_MFGR:maxColLen,P_BRAND:numNulls,P_BRAND:numDVs,P_BRAND:colType,P_BRAND:avgColLen,P_BRAND:maxColLen,P_TYPE:numNulls,P_TYPE:numDVs,P_TYPE:colType,P_TYPE:avgColLen,P_TYPE:maxColLen,P_SIZE:numNulls,P_SIZE:numDVs,P_SIZE:colType,P_SIZE:avgColLen,P_SIZE:maxColLen,P_CONTAINER:numNulls,P_CONTAINER:numDVs,P_CONTAINER:colType,P_CONTAINER:avgColLen,P_CONTAINER:maxColLen,P_RETAILPRICE:numNulls,P_RETAILPRICE:numDVs,P_RETAILPRICE:colType,P_RETAILPRICE:avgColLen,P_RETAILPRICE:maxColLen,P_COMMENT:numNulls,P_COMMENT:numDVs,P_COMMENT:colType,P_COMMENT:avgColLen,P_COMMENT:maxColLen",
+                                  "outputNames": ["112.428551", "2000000.0", "0", "1982709", "BIGINT", "8.0", "8", "0", "1950289", "VARCHAR(55)", "32.747832", "51", "0", "5", "CHAR(25)", "14.0", "14", "0", "25", "CHAR(10)", "8.0", "8", "0", "150", "VARCHAR(25)", "20.5993765", "25", "0", "50", "INTEGER", "4.0", "4", "0", "40", "CHAR(10)", "7.576213", "10", "0", "32726", "DECIMAL(38, 0)", "4.0", "4", "0", "848599", "VARCHAR(23)", "13.5051295", "22"]
+                                }
+                              },
+                              "baseSchema": {
+                                "names": ["P_PARTKEY", "P_NAME", "P_MFGR", "P_BRAND", "P_TYPE", "P_SIZE", "P_CONTAINER", "P_RETAILPRICE", "P_COMMENT"],
+                                "struct": {
+                                  "types": [{
+                                    "i64": {
+                                      "nullability": "NULLABILITY_REQUIRED"
+                                    }
+                                  }, {
+                                    "varchar": {
+                                      "length": 55,
+                                      "nullability": "NULLABILITY_NULLABLE"
+                                    }
+                                  }, {
+                                    "fixedChar": {
+                                      "length": 25,
+                                      "nullability": "NULLABILITY_NULLABLE"
+                                    }
+                                  }, {
+                                    "fixedChar": {
+                                      "length": 10,
+                                      "nullability": "NULLABILITY_NULLABLE"
+                                    }
+                                  }, {
+                                    "varchar": {
+                                      "length": 25,
+                                      "nullability": "NULLABILITY_NULLABLE"
+                                    }
+                                  }, {
+                                    "i32": {
+                                      "nullability": "NULLABILITY_NULLABLE"
+                                    }
+                                  }, {
+                                    "fixedChar": {
+                                      "length": 10,
+                                      "nullability": "NULLABILITY_NULLABLE"
+                                    }
+                                  }, {
+                                    "decimal": {
+                                      "precision": 38,
+                                      "nullability": "NULLABILITY_NULLABLE"
+                                    }
+                                  }, {
+                                    "varchar": {
+                                      "length": 23,
+                                      "nullability": "NULLABILITY_NULLABLE"
+                                    }
+                                  }],
+                                  "nullability": "NULLABILITY_REQUIRED"
+                                }
+                              },
+                              "namedTable": {
+                                "names": ["PART"]
+                              }
+                            }
+                          },
+                          "expression": {
+                            "scalarFunction": {
+                              "functionReference": 1,
+                              "outputType": {
+                                "bool": {
+                                  "nullability": "NULLABILITY_REQUIRED"
+                                }
+                              },
+                              "arguments": [{
+                                "value": {
+                                  "selection": {
+                                    "directReference": {
+                                      "structField": {
+                                        "field": 8
+                                      }
+                                    },
+                                    "rootReference": {
+                                    }
+                                  }
+                                }
+                              }, {
+                                "value": {
+                                  "selection": {
+                                    "directReference": {
+                                      "structField": {
+                                      }
+                                    },
+                                    "rootReference": {
+                                    }
+                                  }
+                                }
+                              }]
+                            }
+                          },
+                          "type": "JOIN_TYPE_INNER"
+                        }
+                      },
+                      "expression": {
+                        "scalarFunction": {
+                          "functionReference": 1,
+                          "outputType": {
+                            "bool": {
+                              "nullability": "NULLABILITY_REQUIRED"
+                            }
+                          },
+                          "arguments": [{
+                            "value": {
+                              "selection": {
+                                "directReference": {
+                                  "structField": {
+                                    "field": 13
+                                  }
+                                },
+                                "rootReference": {
+                                }
+                              }
+                            }
+                          }, {
+                            "value": {
+                              "selection": {
+                                "directReference": {
+                                  "structField": {
+                                  }
+                                },
+                                "rootReference": {
+                                }
+                              }
+                            }
+                          }]
+                        }
+                      },
+                      "type": "JOIN_TYPE_INNER"
+                    }
+                  },
+                  "expression": {
+                    "scalarFunction": {
+                      "functionReference": 1,
+                      "outputType": {
+                        "bool": {
+                          "nullability": "NULLABILITY_REQUIRED"
+                        }
+                      },
+                      "arguments": [{
+                        "value": {
+                          "selection": {
+                            "directReference": {
+                              "structField": {
+                                "field": 15
+                              }
+                            },
+                            "rootReference": {
+                            }
+                          }
+                        }
+                      }, {
+                        "value": {
+                          "selection": {
+                            "directReference": {
+                              "structField": {
+                                "field": 3
+                              }
+                            },
+                            "rootReference": {
+                            }
+                          }
+                        }
+                      }]
+                    }
+                  },
+                  "type": "JOIN_TYPE_INNER"
+                }
+              },
+              "expressions": [{
+                "scalarFunction": {
+                  "functionReference": 2,
+                  "outputType": {
+                    "i32": {
+                      "nullability": "NULLABILITY_NULLABLE"
+                    }
+                  },
+                  "arguments": [{
+                    "value": {
+                      "selection": {
+                        "directReference": {
+                          "structField": {
+                            "field": 11
+                          }
+                        },
+                        "rootReference": {
+                        }
+                      }
+                    }
+                  }]
+                }
+              }, {
+                "scalarFunction": {
+                  "functionReference": 3,
+                  "outputType": {
+                    "i32": {
+                      "nullability": "NULLABILITY_NULLABLE"
+                    }
+                  },
+                  "arguments": [{
+                    "value": {
+                      "selection": {
+                        "directReference": {
+                          "structField": {
+                            "field": 4
+                          }
+                        },
+                        "rootReference": {
+                        }
+                      }
+                    }
+                  }]
+                }
+              }, {
+                "scalarFunction": {
+                  "functionReference": 2,
+                  "outputType": {
+                    "i32": {
+                      "nullability": "NULLABILITY_NULLABLE"
+                    }
+                  },
+                  "arguments": [{
+                    "value": {
+                      "selection": {
+                        "directReference": {
+                          "structField": {
+                            "field": 28
+                          }
+                        },
+                        "rootReference": {
+                        }
+                      }
+                    }
+                  }]
+                }
+              }, {
+                "scalarFunction": {
+                  "functionReference": 2,
+                  "outputType": {
+                    "i32": {
+                      "nullability": "NULLABILITY_NULLABLE"
+                    }
+                  },
+                  "arguments": [{
+                    "value": {
+                      "selection": {
+                        "directReference": {
+                          "structField": {
+                            "field": 13
+                          }
+                        },
+                        "rootReference": {
+                        }
+                      }
+                    }
+                  }]
+                }
+              }, {
+                "scalarFunction": {
+                  "functionReference": 2,
+                  "outputType": {
+                    "i32": {
+                      "nullability": "NULLABILITY_NULLABLE"
+                    }
+                  },
+                  "arguments": [{
+                    "value": {
+                      "selection": {
+                        "directReference": {
+                          "structField": {
+                            "field": 2
+                          }
+                        },
+                        "rootReference": {
+                        }
+                      }
+                    }
+                  }]
+                }
+              }]
+            }
+          },
+          "groupings": [{
+          }],
+          "measures": [{
+            "measure": {
+              "functionReference": 4,
+              "phase": "AGGREGATION_PHASE_INITIAL_TO_RESULT",
+              "outputType": {
+                "i32": {
+                  "nullability": "NULLABILITY_NULLABLE"
+                }
+              },
+              "invocation": "AGGREGATION_INVOCATION_ALL",
+              "arguments": [{
+                "value": {
+                  "selection": {
+                    "directReference": {
+                      "structField": {
+                      }
+                    },
+                    "rootReference": {
+                    }
+                  }
+                }
+              }]
+            }
+          }, {
+            "measure": {
+              "functionReference": 4,
+              "phase": "AGGREGATION_PHASE_INITIAL_TO_RESULT",
+              "outputType": {
+                "i32": {
+                  "nullability": "NULLABILITY_NULLABLE"
+                }
+              },
+              "invocation": "AGGREGATION_INVOCATION_ALL",
+              "arguments": [{
+                "value": {
+                  "selection": {
+                    "directReference": {
+                      "structField": {
+                        "field": 1
+                      }
+                    },
+                    "rootReference": {
+                    }
+                  }
+                }
+              }]
+            }
+          }, {
+            "measure": {
+              "functionReference": 4,
+              "phase": "AGGREGATION_PHASE_INITIAL_TO_RESULT",
+              "outputType": {
+                "i32": {
+                  "nullability": "NULLABILITY_NULLABLE"
+                }
+              },
+              "invocation": "AGGREGATION_INVOCATION_ALL",
+              "arguments": [{
+                "value": {
+                  "selection": {
+                    "directReference": {
+                      "structField": {
+                        "field": 2
+                      }
+                    },
+                    "rootReference": {
+                    }
+                  }
+                }
+              }]
+            }
+          }, {
+            "measure": {
+              "functionReference": 4,
+              "phase": "AGGREGATION_PHASE_INITIAL_TO_RESULT",
+              "outputType": {
+                "i32": {
+                  "nullability": "NULLABILITY_NULLABLE"
+                }
+              },
+              "invocation": "AGGREGATION_INVOCATION_ALL",
+              "arguments": [{
+                "value": {
+                  "selection": {
+                    "directReference": {
+                      "structField": {
+                        "field": 3
+                      }
+                    },
+                    "rootReference": {
+                    }
+                  }
+                }
+              }]
+            }
+          }, {
+            "measure": {
+              "functionReference": 4,
+              "phase": "AGGREGATION_PHASE_INITIAL_TO_RESULT",
+              "outputType": {
+                "i32": {
+                  "nullability": "NULLABILITY_NULLABLE"
+                }
+              },
+              "invocation": "AGGREGATION_INVOCATION_ALL",
+              "arguments": [{
+                "value": {
+                  "selection": {
+                    "directReference": {
+                      "structField": {
+                        "field": 4
+                      }
+                    },
+                    "rootReference": {
+                    }
+                  }
+                }
+              }]
+            }
+          }]
+        }
+      },
+      "names": ["EXPR$0", "EXPR$1", "EXPR$2", "EXPR$3", "EXPR$4"]
+    }
+  }],
+  "version": {
+    "minorNumber": 77,
+    "producer": "isthmus"
+  },
+  "extensionUrns": [{
+    "extensionUrnAnchor": 1,
+    "urn": "extension:io.substrait:functions_comparison"
+  }, {
+    "extensionUrnAnchor": 3,
+    "urn": "extension:io.substrait:functions_arithmetic"
+  }, {
+    "extensionUrnAnchor": 2,
+    "urn": "extension:io.substrait:functions_string"
+  }]
+}
