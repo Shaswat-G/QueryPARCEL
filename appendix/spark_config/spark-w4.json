@@ -9,8 +9,6 @@
             "ae.spark.executor.count": "4",
             "spark.executor.cores": "16",
             "spark.executor.memory": "10G",
-            "spark.memory.fraction": "0.75",
-            "spark.memory.storageFraction": "0.5",
             "spark.task.cpus": "1",
             "spark.sql.shuffle.partitions": "128",
             "spark.default.parallelism": "128",
