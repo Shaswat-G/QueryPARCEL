@@ -23,7 +23,7 @@ mlruns/
 runs/
 outputs/
 artifacts/
-checkpoints/
+# checkpoints/
 *.ckpt
 *.pt
 *.pth
