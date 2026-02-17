@@ -1,0 +1,46 @@
+{
+    "application_details": {
+        "application": "/mnts/spark-data-collection/data_collection_with_warmup_spark_tpcds.py",
+        "conf": {
+            "spark.app.name": "tpcds_sf10_four_executors_comparable_to_presto_w4",
+            "spark.driver.cores": "2",
+            "spark.driver.memory": "8G",
+            "spark.dynamicAllocation.enabled": "false",
+            "ae.spark.executor.count": "4",
+            "spark.executor.cores": "16",
+            "spark.executor.memory": "10G",
+            "spark.memory.fraction": "0.75",
+            "spark.memory.storageFraction": "0.5",
+            "spark.task.cpus": "1",
+            "spark.sql.shuffle.partitions": "128",
+            "spark.default.parallelism": "128",
+            "spark.memory.fraction": "0.6",
+            "spark.memory.storageFraction": "0.0",
+            "spark.sql.adaptive.enabled": "false",
+            "spark.sql.autoBroadcastJoinThreshold": "-1",
+            "spark.eventLog.enabled": "true",
+            "spark.eventLog.dir": "/mnts/spark-data-collection/logs/events",
+            "spark.executor.metrics.pollingInterval": "20",
+            "spark.executor.heartbeatInterval": "250ms",
+            "spark.eventLog.logStageExecutorMetrics": "true",
+            "spark.executor.processTreeMetrics.enabled": "true"
+        },
+        "env": {
+            "CATALOG": "zc2s3",
+            "SCHEMA": "tpcds_sf10_new_storage",
+            "MEASUREMENT_RUNS": "3",
+            "QUERY_TIMEOUT_SECONDS": "125",
+            "WARMUP_QUERIES_FILE": "/mnts/spark-data-collection/tpcds_query_sets/tpcds_warmup_queries.json",
+            "SELECTED_QUERIES_FILE": "/mnts/spark-data-collection/tpcds_query_sets/sorted_queries.json",
+            "QUERY_RANGE_START": "4001",
+            "QUERY_RANGE_END": "4674",
+            "SPARK_LOG_LEVEL": "WARN"
+        }
+    },
+    "volumes": [
+        {
+            "name": "ibm-cpd-operands::spark-data-collection",
+            "mount_path": "/mnts/spark-data-collection"
+        }
+    ]
+}
