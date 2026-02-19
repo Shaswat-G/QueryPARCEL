@@ -49,3 +49,6 @@ plots/generated/
 credentials*.json
 *token*
 *secret*
+
+
+sample.tex
