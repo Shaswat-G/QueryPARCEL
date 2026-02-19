@@ -49,4 +49,4 @@ These diagnostics support that JOB differs materially from the TPC training work
 1. The bulk of runtimes shifts by an order of magnitude
 2. The tail shape differs by engine (notably, heavier Spark tails on JOB)
 
-This motivates treating JOB as an onboarding scenario where zero-shot transfer is unreliable and a small amount of fine-tuning data is required to re-anchor latency prediction and downstream routing decisions.
+Zero-shot transfer is ineffective on JOB. Median time Q-error is **17.81** (P90 **66.28**), with particularly poor calibration on Presto (median Q-error **44.24** on Presto-w1). Correspondingly, routing under SLO tasks is worse than best-fixed, motivating few-shot fine-tuning. This motivates treating JOB as an onboarding scenario where zero-shot transfer is unreliable and a small amount of fine-tuning data is required to re-anchor latency prediction and downstream routing decisions.
