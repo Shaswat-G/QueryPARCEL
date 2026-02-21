@@ -213,11 +213,11 @@ One independent head per engine, outputting per-engine metric predictions from t
 
 ### A.3.5  Graph Pooling
 
-**Mean pooling over `RelNode`s**, weighted by inverse depth:
+**Mean pooling over `RelNode`s**:
 
-$$\mathbf{z}_{\text{graph}} = \frac{1}{|V_{\text{rel}}|} \sum_{v \in V_{\text{rel}}} \mathbf{h}_v \cdot \frac{1}{d_v}$$
+$$\mathbf{z}_{\text{graph}} = \frac{1}{|V_{\text{rel}}|} \sum_{v \in V_{\text{rel}}} \mathbf{h}_v$$
 
-where $d_v$ is the depth of RelNode $v$ and $\mathbf{h}_v$ is its final embedding. This downweights representations of deeply nested sub-plans relative to shallower (more summarizing) operators.
+where $\mathbf{h}_v$ is the final embedding of RelNode $v$.
 
 ### A.3.6  Multi-Head Output
 
