@@ -176,7 +176,7 @@ Per-query statistics are retrieved via `GET /v1/query/{queryId}`. Key fields:
 
 | Field | Role |
 |-------|------|
-| `executionTime` | Wall-clock duration excluding queuing time |
+| `elapsedTime` | Wall-clock duration |
 | `peakNodeTotalMemory` | Adapter input $m^\star$ |
 | `spilledDataSize` | Spill verification (must be 0) |
 | `state` | Outcome filter (`FINISHED` only) |
