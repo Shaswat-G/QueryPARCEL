@@ -1,6 +1,6 @@
 ## Appendix A7 — Adapter Sketches for Additional Engines
 
-The adapter framework applies to any engine where (i) spill decisions are governed by an internal accounting mechanism rather than OS-level OOM, and (ii) peak memory demand is observable or reconstructible per query. Engines lacking query-scoped attribution would require instrumentation extensions or a learned surrogate for Stage 1. We sketch adapters for two additional engines following the three-stage pipeline of §4 (Engine Adapters). Neither has been instantiated or tested on real workloads.
+The adapter framework applies to any engine where (i) spill decisions are governed by an internal accounting mechanism rather than OS-level OOM, and (ii) peak memory demand is observable or reconstructible per query. Engines lacking query-scoped attribution would require instrumentation extensions or a learned surrogate for Stage 1. We sketch adapters for two additional engines following the three-stage pipeline of §3 (Engine Adapters). Neither has been instantiated or tested on real workloads.
 
 ---
 
