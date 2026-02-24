@@ -41,7 +41,7 @@ DuckDB is an embedded, single-process C++ analytical engine — neither distribu
 DuckDB's `BufferManager` exposes a `SYSTEM_PEAK_BUFFER_MEMORY` profiling metric (enabled via `PRAGMA custom_profiling_settings`) that reports the high-water mark of pinned memory during `EXPLAIN ANALYZE`. However, this metric tracks global `BufferManager` state; under concurrent execution it loses query attribution. We therefore restrict to serial execution, mirroring the isolation protocol used for Spark (§5.1):
 
 $$
-m^{\star}_{\text{DuckDB}}(q) := \mathtt{SYSTEM\_PEAK\_BUFFER\_MEMORY}(q) \quad \text{[serial execution]}
+m^{\star}_{\text{DuckDB}}(q) := \text{SYSTEM\_PEAK\_BUFFER\_MEMORY}(q) \quad \text{[serial execution]}
 $$
 
 #### Stage 2 — Invert
