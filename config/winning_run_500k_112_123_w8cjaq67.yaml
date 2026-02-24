@@ -3,7 +3,7 @@
 # Mixed TPC-H + TPC-DS Training for Cross-Schema Generalization
 # =============================================================================
 #
-# Model: BottomUpGNN with 144-dim embeddings (~800k params)
+# Model: BottomUpGNN with 112-dim embeddings (~500k params)
 # Data: TPC-H (~1960 queries) + TPC-DS (~4388 queries) = ~6348 total
 # Split: 80-10-10 per schema
 # Evaluation: Routing evaluated separately per schema post-training
