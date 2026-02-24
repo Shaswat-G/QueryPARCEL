@@ -69,3 +69,12 @@ Quantitative analysis of the distribution shift between TPC training workloads a
 - [Implication for Onboarding](A6_ZeroShot.md#implication-for-onboarding) — Why zero-shot transfer is unreliable and few-shot adaptation is necessary
 
 ---
+
+### [Appendix A7 — Adapter Sketches for Additional Engines](A7_EngineAdapter_Ext.md)
+
+Conceptual adapter sketches for Trino and DuckDB, demonstrating that the three-stage Extract → Invert → Quantize pipeline extends beyond the Spark/Presto engines evaluated in the paper. Neither adapter has been instantiated or tested on real workloads.
+
+- [Trino](A7_EngineAdapter_Ext.md#trino) — Stage 1 instrumentation extension for per-node peak memory; Stage 2 inversion algebraically identical to PrestoDB
+- [DuckDB](A7_EngineAdapter_Ext.md#duckdb) — Embedded single-process engine without JVM or multi-node coordination; serial-execution extraction via `SYSTEM_PEAK_BUFFER_MEMORY`
+
+---
