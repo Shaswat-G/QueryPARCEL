@@ -1,9 +1,9 @@
 # QueryPARCEL
 
-**Provisioning-Aware Routing and Cost Estimation in Lakehouses**
+**Beyond Latency: Provisioning-Aware Query Routing Across Heterogeneous Lakehouse Engines**
 
 Companion repository for the VLDB paper:
-> *Provisioning-Aware Query Routing Across Heterogeneous Lakehouse Engines*
+> *Beyond Latency: Provisioning-Aware Query Routing Across Heterogeneous Lakehouse Engines*
 > Shaswat Gupta, Michael E. Nidd, Ioana Giurgiu — IBM Research Europe, Zürich
 
 ![System overview](appendix/figures/overall_diagram.png)
