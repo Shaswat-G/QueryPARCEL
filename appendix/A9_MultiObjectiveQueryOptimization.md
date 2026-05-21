@@ -1,4 +1,4 @@
-# Appendix A9 — Comparability of Prior Optimization Methods
+# Appendix A9 — Positioning of Prior Systems on Multi-Objective Query Optimization
 
 A prior system is a *directly comparable* baseline only if it solves the same optimization problem. We make this precise with a six-component problem definition:
 
