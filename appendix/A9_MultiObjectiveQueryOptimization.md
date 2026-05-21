@@ -2,7 +2,7 @@
 
 A prior system is a *directly comparable* baseline only if it solves the same optimization problem. We make this precise with a six-component problem definition:
 
-$$\langle\,\text{scope},\ \text{granularity},\ \text{decision space},\ \text{decision-time information},\ \text{objective},\ \text{constraints}\,\rangle,$$
+$$\langle\\text{scope},\ \text{granularity},\ \text{decision space},\ \text{decision-time information},\ \text{objective},\ \text{constraints}\,\rangle,$$
 
 instantiated for our setting as:
 
