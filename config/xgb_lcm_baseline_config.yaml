@@ -1,0 +1,105 @@
+# =============================================================================
+# Final Thesis Training Configuration
+# Mixed TPC-H + TPC-DS Training for Cross-Schema Generalization
+# =============================================================================
+#
+# Model: XGB
+# Data: TPC-H (~1960 queries) + TPC-DS (~4388 queries) = ~6348 total
+# Split: 80-10-10 per schema
+# Evaluation: Routing evaluated separately per schema post-training
+#
+# =============================================================================
+
+name: with_depth_features_SE
+
+data:
+  tpch:
+    labels_path:
+      presto-w1: flexdata_metric_prediction/input_data_warehouse/processed_metrics/tpch_presto-w1.csv
+      presto-w4: flexdata_metric_prediction/input_data_warehouse/processed_metrics/tpch_presto-w4.csv
+      spark-w1: flexdata_metric_prediction/input_data_warehouse/processed_metrics/tpch_spark-w1.csv
+      spark-w4: flexdata_metric_prediction/input_data_warehouse/processed_metrics/tpch_spark-w4.csv
+    plan_path: flexdata_metric_prediction/query_plans/tpch_old_without_subq_12Dec
+    queries_path: flexdata_metric_prediction/input_data_warehouse/queries/tpch
+    query_range: [1, 3200]
+    num_test: 196 # 10% of ~1960
+    num_val: 196 # 10% of ~1960
+    metrics:
+      presto-w1:
+        time: elapsedTime
+        memory: peakNodeTotalMemory
+      presto-w4:
+        time: elapsedTime
+        memory: peakNodeTotalMemory
+      spark-w1:
+        time: wall_clock_duration
+        memory: on_heap_execution_memory
+      spark-w4:
+        time: wall_clock_duration
+        memory: on_heap_execution_memory
+
+  tpcds:
+    labels_path:
+      presto-w1: flexdata_metric_prediction/input_data_warehouse/processed_metrics/tpcds_presto-w1.csv
+      presto-w4: flexdata_metric_prediction/input_data_warehouse/processed_metrics/tpcds_presto-w4.csv
+      spark-w1: flexdata_metric_prediction/input_data_warehouse/processed_metrics/tpcds_spark-w1.csv
+      spark-w4: flexdata_metric_prediction/input_data_warehouse/processed_metrics/tpcds_spark-w4.csv
+    plan_path: flexdata_metric_prediction/query_plans/tpcds
+    queries_path: flexdata_metric_prediction/input_data_warehouse/queries/tpcds
+    query_range: [1, 4674]
+    num_test: 439 # 10% of ~4388
+    num_val: 439 # 10% of ~4388
+    metrics:
+      presto-w1:
+        time: elapsedTime
+        memory: peakNodeTotalMemory
+      presto-w4:
+        time: elapsedTime
+        memory: peakNodeTotalMemory
+      spark-w1:
+        time: wall_clock_duration
+        memory: on_heap_execution_memory
+      spark-w4:
+        time: wall_clock_duration
+        memory: on_heap_execution_memory
+
+# =============================================================================
+# Encoder Configuration
+# =============================================================================
+encoder:
+  encoder: hintEncoder
+
+# =============================================================================
+# Model Configuration (XGBoost)
+# =============================================================================
+model:
+  model_type: XGB
+
+  # Hyperparameters forwarded to xgboost.XGBRegressor(**xgb_params)
+  xgb_params:
+    n_estimators: 1000
+    max_depth: 6
+    learning_rate: 0.1
+    # subsample: 1.0
+    # colsample_bytree: 1.0
+    reg_lambda: 1.0
+    reg_alpha: 0
+    # min_child_weight: 1.0
+    # gamma: 0.0
+    # objective: reg:pseudohubererror
+    objective: reg:squarederror
+    # huber_slope: 2.0
+    eval_metric: rmse
+    tree_method: hist
+    n_jobs: -1
+    random_state: 123
+    # max_bin: 256
+
+  # Passed separately as xgb.XGBRegressor(..., early_stopping_rounds=...)
+  early_stopping_rounds: 50
+
+# Reproducibility
+seed: 123
+
+# Output path
+out: xgb_lcm_runs/
