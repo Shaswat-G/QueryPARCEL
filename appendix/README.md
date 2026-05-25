@@ -78,3 +78,36 @@ Conceptual adapter sketches for Trino and DuckDB, demonstrating that the three-s
 - [DuckDB](A7_EngineAdapter_Ext.md#duckdb) — Embedded single-process engine without JVM or multi-node coordination; serial-execution extraction via `SYSTEM_PEAK_BUFFER_MEMORY`
 
 ---
+
+### [Appendix A8 — XGBoost Baseline: Featurization and Training](A8_XGBoost_Baseline.md)
+
+Details on the canonical LCM on flattened plan features, serving as both a literature-established baseline and a model complexity ablation.
+
+- [Featurization](A8_XGBoost_Baseline.md#featurization) — Flattening heterogeneous plan graphs to a fixed-length 71-dimensional vector preserving composition but discarding topology
+- [Supervision targets](A8_XGBoost_Baseline.md#supervision-targets) — Joint prediction of latency and peak memory across all configurations
+- [Model and hyperparameters](A8_XGBoost_Baseline.md#model-and-hyperparameters) — Configuration, parameters, and early stopping for the `XGBRegressor` ensemble
+- [Evaluation](A8_XGBoost_Baseline.md#evaluation) — Metrics and seed-level reproducibility matching the GNN pipeline
+
+---
+
+### [Appendix A9 — Positioning of Prior Systems on Multi-Objective Query Optimization](A9_MultiObjectiveQueryOptimization.md)
+
+Detailed breakdown and component-wise evaluation positioning prior MOQO/MPQ, learned-router, polystore, and cross-platform systems against our multi-objective provisioning-aware routing.
+
+- [Column definitions](A9_MultiObjectiveQueryOptimization.md#column-definitions) — Setup of the six criteria axes (Scope, Granularity, Decision space, Decision-time info, Objective, Constraints)
+- [Component-wise alignment](A9_MultiObjectiveQueryOptimization.md#table-a91--component-wise-alignment) — Summary comparison against related systems (T&K MOQO, RHEEM, BRAD, etc.)
+- [Per-cell mismatch reasons](A9_MultiObjectiveQueryOptimization.md#table-a92--per-cell-mismatch-reasons) — Granular rationale for why specific systems solve fundamentally different optimization formulations
+- [Synthesis](A9_MultiObjectiveQueryOptimization.md#synthesis) — Categorization of mismatches into plan-space optimization, latency-only routing, and workload-level blueprinting
+
+---
+
+### [Appendix A10 — Cost-Opportunity Decomposition](A10_CostOpportunityDecomposition.md)
+
+Isolates the amount of cost-routing opportunity attributable to per-query memory-tier selection independent of predictor error, demonstrating that the memory term dominates the margin between latency-optimal and cost-optimal routing.
+
+- [Setup](A10_CostOpportunityDecomposition.md#setup) — Definition of cost vs. latency oracles and the capture metric
+- [The memory-blind baseline](A10_CostOpportunityDecomposition.md#the-memory-blind-baseline) — Using a constant-threshold policy to factor out parallelism from memory scaling
+- [Results & Interpretation](A10_CostOpportunityDecomposition.md#results) — Showing that structural memory predictions unlock 69.1% of the opportunity, whereas parallelism-only or tabular models fail to clear the baseline floor
+
+---
+
