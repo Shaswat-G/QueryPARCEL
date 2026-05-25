@@ -315,6 +315,13 @@ Routing quality is evaluated with four downstream tasks post-training:
 
 SLO percentiles evaluated: 50th, 75th, 90th.
 
+![Q-error by Latency Bucket](figures/Qerror_by_latency_bucket.png)
+
+When stratifying prediction error by query-latency regime, we observe that error is moderate throughout:
+* short queries are noisier,
+* GNN and XGB overlap centrally,
+* XGB tails widen substantially with longer queries
+
 ---
 
 ## A.7  Parameter Count Summary
