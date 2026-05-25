@@ -296,7 +296,7 @@ $$\mathcal{L}_{\delta}(\hat{z}, z) = \begin{cases} \frac{1}{2}(\hat{z} - z)^2 & 
 
 Equal weights (0.5 each) are assigned to elapsed time and peak memory.
 
-## A.6  Evaluation Metrics
+## A.6.1  Evaluation Metrics
 
 The primary evaluation metric is the **Q-error** (quantile error), computed in raw (untransformed) space after inverse-normalizing predictions:
 
@@ -315,12 +315,11 @@ Routing quality is evaluated with four downstream tasks post-training:
 
 SLO percentiles evaluated: 50th, 75th, 90th.
 
+### A.6.2  Error Stratification by Query Latency
+
 ![Q-error by Latency Bucket](figures/Qerror_by_latency_bucket.png)
 
-When stratifying prediction error by query-latency regime, we observe that error is moderate throughout:
-* short queries are noisier,
-* GNN and XGB overlap centrally,
-* XGB tails widen substantially with longer queries
+Latency Q-error stratified by oracle query-latency regime. Both models remain well-calibrated across the workload, but prediction variance increases at the extremes. Short-query regimes exhibit higher variance for both models due to fixed overheads and measurement noise, whereas long-query regimes show substantially heavier XGBoost tails, consistent with increasing structural complexity. Violins show the full Q-error distribution; embedded boxplots show median and interquartile range.
 
 ---
 
