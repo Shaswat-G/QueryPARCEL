@@ -13,20 +13,20 @@ instantiated for our setting as:
 - **Objective:** monetary cost coupling predicted latency and a predicted peak-memory provisioning tier via the elastic-billing factor $\kappa(p_{\text{SF}})$;
 - **Constraints:** per-query hard SLO with explicit infeasibility (abstention).
 
-Operationally, a runnable baseline must therefore jointly support: **(L)** per-query latency prediction, **(M)** per-query peak-memory prediction as a provisioning-tier target, **(C)** constrained or multi-objective optimization with infeasibility formalization, and **(X)** heterogeneous cross-engine routing. No prior MOQO/MPQ, learned-router, polystore, or cross-platform system supports all four.
+Operationally, a runnable baseline must therefore jointly support: **(L)** per-query latency prediction, **(M)** per-query peak-memory prediction as a provisioning-tier target, **(C)** constrained or multi-objective optimization with formalization of infeasibility, and **(X)** heterogeneous cross-engine routing. No prior MOQO/MPQ, learned-router, polystore, or cross-platform system supports all four.
 
 ## Column definitions
 
 Each column is a genuine axis of variation across the literature, evaluated under a fixed criterion:
 
-| Component | ✓ requires |
+| Component | Requires |
 |---|---|
 | **Scope** | routing across $\geq 2$ heterogeneous engines |
 | **Granularity** | a per-query decision (not a workload/blueprint-level plan) |
 | **Decision space** | discrete $(\text{engine}, \text{worker count})$ routing tuples |
 | **Decision-time info** | static, pre-provisioned engines; no reprovisioning rights |
 | **Objective** | cost coupling latency and a peak-memory provisioning tier via $\kappa(p_{\text{SF}})$ † |
-| **Constraints** | a per-query hard SLO with explicit infeasibility / abstention |
+| **Constraints** | a per-query hard SLO with explicit infeasibility/abstention |
 
 † Systems with *related but distinct* objectives — e.g., a latency–cost Pareto frontier without a memory-tier target — are marked ✗ on Objective, since the distinguishing quantity is the memory-tier coupling, not the presence of a cost term.
 
@@ -61,11 +61,11 @@ A baseline must match on all six components. No prior system matches all six; ev
 
 The mismatches partition into three classes.
 
-**Single-engine MOQO and tuning** (T&K [1,2]; Georgoulakis Misegiannis et al. [3]; UDAO/UDAO-Spark [4]) supply constrained and Pareto machinery but optimize physical plans or runtime knobs within one engine, with no cross-engine decision variable and no memory-tier objective. **Cross-platform routers** (RHEEM/Wayang [6]; Strausz et al. [7]) match scope and decision space but are single-objective over runtime, lacking both a memory-tier objective and infeasibility-aware constraints. **Workload-level blueprint search** (BRAD [8]) is the closest partial match but solves a different problem: it optimizes engine set, table placement, provisioning, and routing policy over reprovisionable managed warehouses whose memory governance is non-invertible, whereas we route per-query across static lakehouse engines with explicit memory-tier modeling and per-query infeasibility-aware SLOs.
+**Single-engine MOQO and tuning** (T&K [1,2]; Georgoulakis Misegiannis et al. [3]; UDAO/UDAO-Spark [4]) supply-constrained and Pareto-optimal machinery but optimize physical plans or runtime knobs within a single engine, with no cross-engine decision variable and no memory-tier objective. **Cross-platform routers** (RHEEM/Wayang [6]; Strausz et al. [7]) match scope and decision space but are single-objective over runtime, lacking both a memory-tier objective and infeasibility-aware constraints. **Workload-level blueprint search** (BRAD [8]) is the closest partial match but solves a different problem: it optimizes engine set, table placement, provisioning, and routing policy over reprovisionable managed warehouses whose memory governance is non-invertible, whereas we route per-query across static lakehouse engines with explicit memory-tier modeling and per-query infeasibility-aware SLOs.
 
-Beyond the scope mismatch, plan-space MOQO does not transfer *algorithmically*. Classical MOQO/MPQ searches intra-engine physical-plan spaces by dynamic programming or Pareto approximation over plan frontiers. Our decision space is instead the small discrete cross-product of routing tuples $(\text{engine}, \text{worker count})$, over which multi-objective selection reduces to skyline enumeration on predicted metrics — which the router already performs. The dynamic-programming and approximation machinery that constitutes plan-space MOQO is therefore inapplicable, independent of scope.
+Beyond the scope mismatch, plan-space MOQO does not transfer *algorithmically*. Classical MOQO/MPQ searches within the intra-engine physical-plan space via dynamic programming or Pareto approximation over plan frontiers. Our decision space is instead the small discrete cross-product of routing tuples $(\text{engine}, \text{worker count})$, over which multi-objective selection reduces to skyline enumeration on predicted metrics — which the router already performs. The dynamic-programming and approximation machinery that constitutes plan-space MOQO is therefore inapplicable, independent of scope.
 
-Adapting any partial match to our setting would require importing this paper's core contributions — the engine adapters, per-query peak-memory prediction, the billing model with $p_{\text{SF}}$ and $\kappa(\cdot)$, and explicit SLO infeasibility formalization. We accordingly position these systems as related work rather than directly comparable empirical baselines.
+Adapting any partial match to our setting would require importing this paper's core contributions — the engine adapters, per-query peak-memory prediction, the billing model with $p_{\text{SF}}$ and $\kappa(\cdot)$, and the explicit SLO-infeasibility formalization. Accordingly, we position these systems as related work rather than as directly comparable empirical baselines.
 
 ## References
 
